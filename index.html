@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eeeae3" />
+    <title>KVITKA space</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="top">
+        <button class="mark" data-screen="home" aria-label="На головну">✾</button>
+        <div>
+          <strong>KVITKA space</strong>
+          <span>Наталія Квітка · психологиня</span>
+        </div>
+        <a class="top-link" data-contact="Доброго дня, хочу записатися на консультацію.">Написати</a>
+      </header>
+
+      <section class="screen active" id="home">
+        <article class="hero">
+          <img src="./public/kvitka/hero.jpg" alt="Наталія Квітка" />
+          <div>
+            <span>Психологиня · Гештальт-терапія для жінок</span>
+            <h1>Ти давно тримаєшся сама.</h1>
+            <p>Зовні — усе під контролем. Всередині — втома, яка нікуди не зникає, і відчуття, що ти давно не була собою.</p>
+            <div class="actions">
+              <button data-screen="picker">Підібрати формат</button>
+              <a href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer">KVITKA space</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bridge">
+          <p>Якщо останнім часом ви більше виживаєте, ніж по-справжньому живете, можливо, настав час повернутися до себе.</p>
+          <span>Я створюю простір, де можна зупинитися, почути свої почуття й потреби, побути собою — без оцінки, без тиску та без необхідності бути «ідеальною».</span>
+        </article>
+
+        <article class="panel">
+          <div class="heading"><span>✣ З чим приходять</span><h2>Можливо, ви теж із цим стикались</h2></div>
+          <div class="chips" id="pain-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="heading"><span>✣ Що зміниться</span><h2>Після терапії ви повернетеся до себе</h2></div>
+          <div class="change-list" id="change-list"></div>
+        </article>
+      </section>
+
+      <section class="screen" id="picker">
+        <article class="panel">
+          <div class="heading"><span>✣ Підібрати формат</span><h2>Що зараз найбільше відгукується?</h2></div>
+          <div class="picker" id="picker-list"></div>
+          <div class="result" id="picker-result"></div>
+        </article>
+      </section>
+
+      <section class="screen" id="formats">
+        <article class="panel">
+          <div class="heading"><span>✣ Формати</span><h2>Оберіть формат, який відгукується</h2></div>
+          <div class="services" id="service-list"></div>
+          <button class="wide" data-screen="insurance">Страхова компенсація</button>
+        </article>
+      </section>
+
+      <section class="screen" id="service-detail">
+        <button class="back" data-screen="formats">← Формати</button>
+        <article class="detail" id="service-detail-content"></article>
+      </section>
+
+      <section class="screen" id="insurance">
+        <article class="panel">
+          <div class="heading"><span>✣ Страхова</span><h2>Частина вартості терапії може компенсуватися страховою</h2></div>
+          <div class="detail">
+            <img src="./public/kvitka/insurance.jpg" alt="" />
+            <p>Мої клієнтки можуть скористатися частковою компенсацією вартості психотерапії від медичних страхових компаній Чехії.</p>
+            <p>Компенсацію надають: VZP (111) · ČPZP (205) · OZP (207) · ZP Škoda (209) · ZPMV (211) · RBP (213)</p>
+            <p>Кожна страхова виділяє кошти на 10 зустрічей, суми відрізняються. Напишіть мені — допоможу розібратися з умовами вашої програми.</p>
+            <a data-contact="Доброго дня, хочу дізнатися про компенсацію терапії страховою.">Написати про страхову</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="screen" id="about">
+        <article class="panel">
+          <div class="heading"><span>✣ Про Наталію</span><h2>Мене звати Наталія</h2></div>
+          <div class="detail">
+            <img src="./public/kvitka/about.jpg" alt="Наталія Квітка" />
+            <p>Я гештальт-терапевтка. Поруч зі мною жінки знаходять внутрішню опору, повертають довіру до себе й відчуття власної цінності — проходять через кризи, складні стосунки й життєві зміни.</p>
+            <p>З 2022 року живу і працюю в Чехії. Чотири роки працювала в Національному інституті психічного здоров'я (NUDZ) у проєкті підтримки українців.</p>
+            <div class="proof">
+              <span>ČAP</span>
+              <span>Психолог у здравотництві</span>
+              <span>Гештальт-терапевтка, МІГІС</span>
+              <span>Супервізорка в навчанні</span>
+            </div>
+          </div>
+          <div class="certs" id="cert-list"></div>
+        </article>
+      </section>
+
+      <section class="screen" id="faq">
+        <article class="panel">
+          <div class="heading"><span>✣ FAQ</span><h2>Питання, які часто виникають</h2></div>
+          <div class="faq" id="faq-list"></div>
+        </article>
+      </section>
+
+      <section class="screen" id="contact">
+        <article class="panel">
+          <div class="heading"><span>✣ Контакт</span><h2>Вам не потрібно справлятися з усім наодинці</h2></div>
+          <div class="detail contact">
+            <img src="./public/kvitka/contact.jpg" alt="" />
+            <p>Якщо відчуваєте, що настав час повернутися до себе, я буду поруч. Напишіть мені — і ми разом знайдемо наступний крок.</p>
+            <a data-contact="Доброго дня, хочу записатися на консультацію.">Написати Наталії</a>
+            <a class="secondary" href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer">Приєднатися до KVITKA space</a>
+          </div>
+        </article>
+      </section>
+
+      <nav class="nav">
+        <button class="active" data-screen="home"><span>✾</span>Головна</button>
+        <button data-screen="formats"><span>◇</span>Формати</button>
+        <button data-screen="about"><span>●</span>Наталія</button>
+        <button data-screen="faq"><span>?</span>FAQ</button>
+        <button data-screen="contact"><span>↗</span>Контакт</button>
+      </nav>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
