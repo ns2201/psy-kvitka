@@ -78,6 +78,36 @@ function paymentStatusLabel(status) {
   return status || "Оплачено";
 }
 
+function paymentView(payload) {
+  const payment = normalizePayload(payload);
+  const status = payment.transactionStatus || "Approved";
+  if (status === "Declined") {
+    return {
+      title: "Оплату не завершено",
+      text: "Платіж не пройшов. Можливо, на картці недостатньо коштів або банк відхилив операцію. Можна спробувати ще раз або написати Наталії.",
+      mark: "!",
+      tone: "#a33b21",
+      status
+    };
+  }
+  if (status === "InProcessing") {
+    return {
+      title: "Платіж в обробці",
+      text: "WayForPay ще обробляє платіж. Наталія побачить статус у таблиці, коли банк підтвердить операцію.",
+      mark: "...",
+      tone: "#b8821d",
+      status
+    };
+  }
+  return {
+    title: "Оплату прийнято",
+    text: "Дякую. Платіж пройшов успішно. Наталія побачить оплату й зможе написати вам щодо наступного кроку.",
+    mark: "✓",
+    tone: "#1f671f",
+    status
+  };
+}
+
 async function sendPaymentToSheets(payload) {
   const payment = normalizePayload(payload);
   if (!payment.orderReference) return;
@@ -104,6 +134,7 @@ async function sendPaymentToSheets(payload) {
 }
 
 function successPage(payload) {
+  const view = paymentView(payload);
   const orderReference = escapeHtml(payload.orderReference || payload.ORDERREFERENCE || "");
   const amount = escapeHtml(payload.amount || payload.AMOUNT || "");
   const currency = escapeHtml(payload.currency || payload.CURRENCY || "UAH");
@@ -113,7 +144,7 @@ function successPage(payload) {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Оплату прийнято | KVITKA space</title>
+        <title>${escapeHtml(view.title)} | KVITKA space</title>
         <style>
           :root { color-scheme: light; }
           * { box-sizing: border-box; }
@@ -141,7 +172,7 @@ function successPage(payload) {
             place-items: center;
             border-radius: 50%;
             margin-bottom: 18px;
-            background: #1f671f;
+            background: ${view.tone};
             color: white;
             font-size: 30px;
             font-weight: 900;
@@ -192,9 +223,9 @@ function successPage(payload) {
       </head>
       <body>
         <main>
-          <div class="mark">✓</div>
-          <h1>Оплату прийнято</h1>
-          <p>Дякую. Платіж пройшов успішно. Наталія побачить оплату й зможе написати вам щодо наступного кроку.</p>
+          <div class="mark">${escapeHtml(view.mark)}</div>
+          <h1>${escapeHtml(view.title)}</h1>
+          <p>${escapeHtml(view.text)}</p>
           <div class="details">
             ${orderReference ? `<div class="row"><span>Номер</span><span>${orderReference}</span></div>` : ""}
             ${amount ? `<div class="row"><span>Сума</span><span>${amount} ${currency}</span></div>` : ""}

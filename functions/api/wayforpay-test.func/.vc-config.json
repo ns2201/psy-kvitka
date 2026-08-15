@@ -3,5 +3,5 @@
   "handler": "index.mjs",
   "launcherType": "Nodejs",
   "shouldAddHelpers": true,
-  "maxDuration": 10
+  "maxDuration": 60
 }

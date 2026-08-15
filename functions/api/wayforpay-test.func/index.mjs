@@ -19,6 +19,29 @@ function hidden(name, value) {
   return `<input type="hidden" name="${escapeHtml(name)}" value="${escapeHtml(value)}" />`;
 }
 
+async function createPendingPayment({ orderReference, amount, currency, telegramId }) {
+  const webhookUrl =
+    env("GOOGLE_SHEETS_WEBHOOK_URL") ||
+    "https://script.google.com/macros/s/AKfycbxmDfxznd3lRIFKVDMfFtjf382RdAWEolFNJ_YHqX952DXTe9g9cShALyfVp-fLEa6A/exec";
+  if (!webhookUrl) return;
+
+  const url = new URL(webhookUrl);
+  url.searchParams.set("type", "payment");
+  url.searchParams.set("created_at", new Date().toISOString());
+  url.searchParams.set("order_reference", orderReference);
+  url.searchParams.set("wayforpay_transaction_id", "");
+  url.searchParams.set("amount", amount);
+  url.searchParams.set("currency", currency);
+  url.searchParams.set("payment_status", "Очікує оплату");
+  url.searchParams.set("payment_method", "WayForPay");
+  url.searchParams.set("service", "Тестова оплата KVITKA space");
+  url.searchParams.set("telegram_id", telegramId || "");
+  url.searchParams.set("paid_at", "");
+  url.searchParams.set("comment", "Створено посилання на оплату");
+
+  await fetch(url, { method: "GET" });
+}
+
 export default async function handler(request, response) {
   const merchantAccount = env("WAYFORPAY_MERCHANT_ACCOUNT");
   const merchantDomainName = env("WAYFORPAY_MERCHANT_DOMAIN") || "psy-kvitka.vercel.app";
@@ -54,6 +77,12 @@ export default async function handler(request, response) {
   const productName = ["Тестова оплата KVITKA space"];
   const productCount = ["1"];
   const productPrice = ["1"];
+
+  try {
+    await createPendingPayment({ orderReference, amount, currency, telegramId });
+  } catch (error) {
+    console.error("Could not create pending WayForPay payment", error);
+  }
 
   const signatureBase = [
     merchantAccount,
