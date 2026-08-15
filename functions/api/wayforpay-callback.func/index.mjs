@@ -46,9 +46,18 @@ function secondsToIso(seconds) {
   return new Date(numeric * 1000).toISOString();
 }
 
+function paymentStatusLabel(status) {
+  if (status === "Approved") return "Оплачено";
+  if (status === "Declined") return "Не оплачено";
+  if (status === "Refunded") return "Повернення";
+  if (status === "InProcessing") return "В обробці";
+  return status || "Очікує підтвердження";
+}
+
 async function sendPaymentToSheets(payload) {
   const webhookUrl = env("GOOGLE_SHEETS_WEBHOOK_URL") || SHEETS_WEBHOOK_FALLBACK;
   if (!webhookUrl) return;
+  if (!payload.orderReference) return;
 
   const url = new URL(webhookUrl);
   url.searchParams.set("type", "payment");
@@ -57,10 +66,10 @@ async function sendPaymentToSheets(payload) {
   url.searchParams.set("wayforpay_transaction_id", payload.transactionId || payload.invoiceId || "");
   url.searchParams.set("amount", String(payload.amount || ""));
   url.searchParams.set("currency", payload.currency || "UAH");
-  url.searchParams.set("payment_status", payload.transactionStatus || "");
+  url.searchParams.set("payment_status", paymentStatusLabel(payload.transactionStatus));
   url.searchParams.set("payment_method", payload.paymentSystem || "WayForPay");
   url.searchParams.set("service", "Тестова оплата KVITKA space");
-  url.searchParams.set("client_name", payload.clientName || "");
+  url.searchParams.set("client_name", payload.clientName || payload.email || payload.phone || "");
   url.searchParams.set("telegram_id", payload.telegramId || "");
   url.searchParams.set("paid_at", secondsToIso(payload.processingDate || payload.createdDate));
   url.searchParams.set("comment", payload.reason || payload.reasonCode || "");
@@ -72,7 +81,7 @@ export default async function handler(request, response) {
   const secretKey = env("WAYFORPAY_SECRET_KEY");
   const rawBody = await readBody(request);
   const payload = parsePayload(request, rawBody);
-  const orderReference = payload.orderReference || `KVITKA-CALLBACK-${Date.now()}`;
+  const orderReference = payload.orderReference || "";
   const status = "accept";
   const time = Math.floor(Date.now() / 1000);
   const signature = secretKey ? hmacMd5(secretKey, [orderReference, status, time].join(";")) : "";
@@ -85,5 +94,5 @@ export default async function handler(request, response) {
 
   response.statusCode = 200;
   response.setHeader("content-type", "application/json; charset=utf-8");
-  response.end(JSON.stringify({ orderReference, status, time, signature }));
+  response.end(JSON.stringify(orderReference ? { orderReference, status, time, signature } : { ok: true }));
 }
