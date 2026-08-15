@@ -20,25 +20,45 @@ function hidden(name, value) {
 }
 
 async function createPendingPayment({ orderReference, amount, currency, telegramId }) {
+  await sendCrmEvent("payment.created", {
+    type: "payment",
+    created_at: new Date().toISOString(),
+    order_reference: orderReference,
+    wayforpay_transaction_id: "",
+    amount,
+    currency,
+    payment_status: "Очікує оплату",
+    payment_method: "WayForPay",
+    service: "Тестова оплата KVITKA space",
+    telegram_id: telegramId || "",
+    paid_at: "",
+    comment: "Створено посилання на оплату"
+  });
+}
+
+async function sendCrmEvent(event, data) {
+  const makeWebhookUrl = env("MAKE_WEBHOOK_URL") || env("CRM_WEBHOOK_URL");
+  if (makeWebhookUrl) {
+    await fetch(makeWebhookUrl, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        event,
+        source: "vercel_wayforpay",
+        sent_at: new Date().toISOString(),
+        data
+      })
+    });
+    return;
+  }
+
   const webhookUrl =
     env("GOOGLE_SHEETS_WEBHOOK_URL") ||
     "https://script.google.com/macros/s/AKfycbxmDfxznd3lRIFKVDMfFtjf382RdAWEolFNJ_YHqX952DXTe9g9cShALyfVp-fLEa6A/exec";
-  if (!webhookUrl) return;
-
   const url = new URL(webhookUrl);
-  url.searchParams.set("type", "payment");
-  url.searchParams.set("created_at", new Date().toISOString());
-  url.searchParams.set("order_reference", orderReference);
-  url.searchParams.set("wayforpay_transaction_id", "");
-  url.searchParams.set("amount", amount);
-  url.searchParams.set("currency", currency);
-  url.searchParams.set("payment_status", "Очікує оплату");
-  url.searchParams.set("payment_method", "WayForPay");
-  url.searchParams.set("service", "Тестова оплата KVITKA space");
-  url.searchParams.set("telegram_id", telegramId || "");
-  url.searchParams.set("paid_at", "");
-  url.searchParams.set("comment", "Створено посилання на оплату");
-
+  for (const [key, value] of Object.entries(data)) {
+    if (value !== undefined && value !== null) url.searchParams.set(key, String(value));
+  }
   await fetch(url, { method: "GET" });
 }
 

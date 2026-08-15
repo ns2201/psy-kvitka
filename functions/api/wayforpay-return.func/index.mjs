@@ -112,24 +112,46 @@ async function sendPaymentToSheets(payload) {
   const payment = normalizePayload(payload);
   if (!payment.orderReference) return;
 
+  await sendCrmEvent("payment.returned", {
+    type: "payment",
+    created_at: new Date().toISOString(),
+    order_reference: payment.orderReference,
+    wayforpay_transaction_id: payment.transactionId || payment.invoiceId || payment.orderReference,
+    amount: String(payment.amount || ""),
+    currency: payment.currency,
+    payment_status: paymentStatusLabel(payment.transactionStatus),
+    payment_method: payment.paymentSystem,
+    service: "Тестова оплата KVITKA space",
+    client_name: payment.clientName || payment.email || payment.phone || "",
+    telegram_id: payment.telegramId || "",
+    paid_at: secondsToIso(payment.processingDate || payment.createdDate) || new Date().toISOString(),
+    comment: payment.reason || payment.reasonCode || "return-url"
+  });
+}
+
+async function sendCrmEvent(event, data) {
+  const makeWebhookUrl = env("MAKE_WEBHOOK_URL") || env("CRM_WEBHOOK_URL");
+  if (makeWebhookUrl) {
+    await fetch(makeWebhookUrl, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        event,
+        source: "vercel_wayforpay",
+        sent_at: new Date().toISOString(),
+        data
+      })
+    });
+    return;
+  }
+
   const webhookUrl =
     env("GOOGLE_SHEETS_WEBHOOK_URL") ||
     "https://script.google.com/macros/s/AKfycbxmDfxznd3lRIFKVDMfFtjf382RdAWEolFNJ_YHqX952DXTe9g9cShALyfVp-fLEa6A/exec";
   const url = new URL(webhookUrl);
-  url.searchParams.set("type", "payment");
-  url.searchParams.set("created_at", new Date().toISOString());
-  url.searchParams.set("order_reference", payment.orderReference);
-  url.searchParams.set("wayforpay_transaction_id", payment.transactionId || payment.invoiceId || payment.orderReference);
-  url.searchParams.set("amount", String(payment.amount || ""));
-  url.searchParams.set("currency", payment.currency);
-  url.searchParams.set("payment_status", paymentStatusLabel(payment.transactionStatus));
-  url.searchParams.set("payment_method", payment.paymentSystem);
-  url.searchParams.set("service", "Тестова оплата KVITKA space");
-  url.searchParams.set("client_name", payment.clientName || payment.email || payment.phone || "");
-  url.searchParams.set("telegram_id", payment.telegramId || "");
-  url.searchParams.set("paid_at", secondsToIso(payment.processingDate || payment.createdDate) || new Date().toISOString());
-  url.searchParams.set("comment", payment.reason || payment.reasonCode || "return-url");
-
+  for (const [key, value] of Object.entries(data)) {
+    if (value !== undefined && value !== null) url.searchParams.set(key, String(value));
+  }
   await fetch(url, { method: "GET" });
 }
 
