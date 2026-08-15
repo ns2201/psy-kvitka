@@ -173,6 +173,7 @@ img {
 
 .actions button,
 .actions a,
+.result button,
 .result a,
 .detail a,
 .wide {
@@ -189,6 +190,13 @@ img {
 .actions a {
   color: var(--green);
   background: var(--white);
+}
+
+.wide.secondary,
+.result button {
+  color: var(--green);
+  border: 1px solid rgba(31, 103, 31, 0.35);
+  background: rgba(255, 255, 255, 0.54);
 }
 
 .bridge,
@@ -266,9 +274,11 @@ img {
 }
 
 .result a,
+.result button,
 .detail a {
   display: block;
   margin-top: 16px;
+  width: 100%;
 }
 
 .services {
@@ -354,6 +364,64 @@ img {
   display: block;
   color: var(--green);
   font-weight: 850;
+}
+
+.info-block,
+.event-list article {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.info-block h3,
+.event-list h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.info-block p {
+  margin: 6px 0 0;
+}
+
+.event-list {
+  display: grid;
+  gap: 12px;
+}
+
+.event-list span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--green);
+  background: rgba(31, 103, 31, 0.1);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.event-list b,
+.event-list p {
+  display: block;
+  margin: 8px 0 0;
+}
+
+.event-list p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.event-list a {
+  display: block;
+  min-height: 44px;
+  margin-top: 14px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--white);
+  background: var(--green);
+  font-weight: 850;
+  text-align: center;
 }
 
 .detail a.secondary {
