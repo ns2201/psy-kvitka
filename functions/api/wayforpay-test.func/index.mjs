@@ -25,6 +25,8 @@ export default async function handler(request, response) {
   const secretKey = env("WAYFORPAY_SECRET_KEY");
   const returnUrl = env("WAYFORPAY_RETURN_URL") || "https://psy-kvitka.vercel.app/api/wayforpay-return";
   const serviceUrl = env("WAYFORPAY_SERVICE_URL") || "https://psy-kvitka.vercel.app/api/wayforpay-callback";
+  const query = new URL(request.url, `https://${merchantDomainName}`).searchParams;
+  const telegramId = String(query.get("telegram_id") || "").replace(/\D/g, "");
 
   if (!merchantAccount || !secretKey) {
     response.statusCode = 500;
@@ -45,7 +47,7 @@ export default async function handler(request, response) {
     return;
   }
 
-  const orderReference = `KVITKA-TEST-${Date.now()}`;
+  const orderReference = telegramId ? `KVITKA-TG${telegramId}-${Date.now()}` : `KVITKA-TEST-${Date.now()}`;
   const orderDate = Math.floor(Date.now() / 1000);
   const amount = "1";
   const currency = "UAH";

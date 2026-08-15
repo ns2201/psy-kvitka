@@ -46,9 +46,12 @@ function valueOf(payload, ...names) {
 }
 
 function normalizePayload(payload) {
+  const orderReference = valueOf(payload, "orderReference", "ORDERREFERENCE");
+  const telegramIdFromOrder = String(orderReference).match(/KVITKA-TG(\d+)-/)?.[1] || "";
+
   return {
     merchantAccount: valueOf(payload, "merchantAccount", "MERCHANTACCOUNT"),
-    orderReference: valueOf(payload, "orderReference", "ORDERREFERENCE"),
+    orderReference,
     transactionId: valueOf(payload, "transactionId", "TRANSACTIONID"),
     invoiceId: valueOf(payload, "invoiceId", "INVOICEID"),
     amount: valueOf(payload, "amount", "AMOUNT"),
@@ -56,7 +59,7 @@ function normalizePayload(payload) {
     transactionStatus: valueOf(payload, "transactionStatus", "TRANSACTIONSTATUS"),
     paymentSystem: valueOf(payload, "paymentSystem", "PAYMENTSYSTEM") || "WayForPay",
     clientName: valueOf(payload, "clientName", "CLIENTNAME"),
-    telegramId: valueOf(payload, "telegramId", "TELEGRAMID"),
+    telegramId: valueOf(payload, "telegramId", "TELEGRAMID") || telegramIdFromOrder,
     processingDate: valueOf(payload, "processingDate", "PROCESSINGDATE"),
     createdDate: valueOf(payload, "createdDate", "CREATEDDATE"),
     reason: valueOf(payload, "reason", "REASON"),
