@@ -28,6 +28,81 @@ function parsePayload(request, rawBody) {
   return Object.fromEntries(params.entries());
 }
 
+function env(name) {
+  return process.env[name] || "";
+}
+
+function valueOf(payload, ...names) {
+  for (const name of names) {
+    if (payload[name] !== undefined && payload[name] !== null && payload[name] !== "") {
+      return payload[name];
+    }
+  }
+  return "";
+}
+
+function normalizePayload(payload) {
+  const orderReference = valueOf(payload, "orderReference", "ORDERREFERENCE");
+  const telegramIdFromOrder = String(orderReference).match(/KVITKA-TG(\d+)-/)?.[1] || "";
+
+  return {
+    orderReference,
+    transactionId: valueOf(payload, "transactionId", "TRANSACTIONID"),
+    invoiceId: valueOf(payload, "invoiceId", "INVOICEID"),
+    amount: valueOf(payload, "amount", "AMOUNT"),
+    currency: valueOf(payload, "currency", "CURRENCY") || "UAH",
+    transactionStatus: valueOf(payload, "transactionStatus", "TRANSACTIONSTATUS") || "Approved",
+    paymentSystem: valueOf(payload, "paymentSystem", "PAYMENTSYSTEM") || "WayForPay",
+    clientName: valueOf(payload, "clientName", "CLIENTNAME"),
+    telegramId: valueOf(payload, "telegramId", "TELEGRAMID") || telegramIdFromOrder,
+    processingDate: valueOf(payload, "processingDate", "PROCESSINGDATE"),
+    createdDate: valueOf(payload, "createdDate", "CREATEDDATE"),
+    reason: valueOf(payload, "reason", "REASON"),
+    reasonCode: valueOf(payload, "reasonCode", "REASONCODE"),
+    email: valueOf(payload, "email", "EMAIL"),
+    phone: valueOf(payload, "phone", "PHONE")
+  };
+}
+
+function secondsToIso(seconds) {
+  const numeric = Number(seconds);
+  if (!Number.isFinite(numeric) || numeric <= 0) return "";
+  return new Date(numeric * 1000).toISOString();
+}
+
+function paymentStatusLabel(status) {
+  if (status === "Approved") return "Оплачено";
+  if (status === "Declined") return "Не оплачено";
+  if (status === "Refunded") return "Повернення";
+  if (status === "InProcessing") return "В обробці";
+  return status || "Оплачено";
+}
+
+async function sendPaymentToSheets(payload) {
+  const payment = normalizePayload(payload);
+  if (!payment.orderReference) return;
+
+  const webhookUrl =
+    env("GOOGLE_SHEETS_WEBHOOK_URL") ||
+    "https://script.google.com/macros/s/AKfycbxmDfxznd3lRIFKVDMfFtjf382RdAWEolFNJ_YHqX952DXTe9g9cShALyfVp-fLEa6A/exec";
+  const url = new URL(webhookUrl);
+  url.searchParams.set("type", "payment");
+  url.searchParams.set("created_at", new Date().toISOString());
+  url.searchParams.set("order_reference", payment.orderReference);
+  url.searchParams.set("wayforpay_transaction_id", payment.transactionId || payment.invoiceId || payment.orderReference);
+  url.searchParams.set("amount", String(payment.amount || ""));
+  url.searchParams.set("currency", payment.currency);
+  url.searchParams.set("payment_status", paymentStatusLabel(payment.transactionStatus));
+  url.searchParams.set("payment_method", payment.paymentSystem);
+  url.searchParams.set("service", "Тестова оплата KVITKA space");
+  url.searchParams.set("client_name", payment.clientName || payment.email || payment.phone || "");
+  url.searchParams.set("telegram_id", payment.telegramId || "");
+  url.searchParams.set("paid_at", secondsToIso(payment.processingDate || payment.createdDate) || new Date().toISOString());
+  url.searchParams.set("comment", payment.reason || payment.reasonCode || "return-url");
+
+  await fetch(url, { method: "GET" });
+}
+
 function successPage(payload) {
   const orderReference = escapeHtml(payload.orderReference || payload.ORDERREFERENCE || "");
   const amount = escapeHtml(payload.amount || payload.AMOUNT || "");
@@ -138,6 +213,12 @@ export default async function handler(request, response) {
     ...Object.fromEntries(query.entries()),
     ...parsePayload(request, rawBody)
   };
+
+  try {
+    await sendPaymentToSheets(payload);
+  } catch (error) {
+    console.error("Could not write WayForPay return payment to Google Sheets", error);
+  }
 
   response.statusCode = 200;
   response.setHeader("content-type", "text/html; charset=utf-8");
