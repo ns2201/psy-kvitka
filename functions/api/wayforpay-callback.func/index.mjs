@@ -36,6 +36,36 @@ function parsePayload(request, rawBody) {
   }
 }
 
+function valueOf(payload, ...names) {
+  for (const name of names) {
+    if (payload[name] !== undefined && payload[name] !== null && payload[name] !== "") {
+      return payload[name];
+    }
+  }
+  return "";
+}
+
+function normalizePayload(payload) {
+  return {
+    merchantAccount: valueOf(payload, "merchantAccount", "MERCHANTACCOUNT"),
+    orderReference: valueOf(payload, "orderReference", "ORDERREFERENCE"),
+    transactionId: valueOf(payload, "transactionId", "TRANSACTIONID"),
+    invoiceId: valueOf(payload, "invoiceId", "INVOICEID"),
+    amount: valueOf(payload, "amount", "AMOUNT"),
+    currency: valueOf(payload, "currency", "CURRENCY") || "UAH",
+    transactionStatus: valueOf(payload, "transactionStatus", "TRANSACTIONSTATUS"),
+    paymentSystem: valueOf(payload, "paymentSystem", "PAYMENTSYSTEM") || "WayForPay",
+    clientName: valueOf(payload, "clientName", "CLIENTNAME"),
+    telegramId: valueOf(payload, "telegramId", "TELEGRAMID"),
+    processingDate: valueOf(payload, "processingDate", "PROCESSINGDATE"),
+    createdDate: valueOf(payload, "createdDate", "CREATEDDATE"),
+    reason: valueOf(payload, "reason", "REASON"),
+    reasonCode: valueOf(payload, "reasonCode", "REASONCODE"),
+    email: valueOf(payload, "email", "EMAIL"),
+    phone: valueOf(payload, "phone", "PHONE")
+  };
+}
+
 function hmacMd5(secretKey, value) {
   return crypto.createHmac("md5", secretKey).update(value, "utf8").digest("hex");
 }
@@ -55,24 +85,25 @@ function paymentStatusLabel(status) {
 }
 
 async function sendPaymentToSheets(payload) {
+  const payment = normalizePayload(payload);
   const webhookUrl = env("GOOGLE_SHEETS_WEBHOOK_URL") || SHEETS_WEBHOOK_FALLBACK;
   if (!webhookUrl) return;
-  if (!payload.orderReference) return;
+  if (!payment.orderReference) return;
 
   const url = new URL(webhookUrl);
   url.searchParams.set("type", "payment");
   url.searchParams.set("created_at", new Date().toISOString());
-  url.searchParams.set("order_reference", payload.orderReference || "");
-  url.searchParams.set("wayforpay_transaction_id", payload.transactionId || payload.invoiceId || "");
-  url.searchParams.set("amount", String(payload.amount || ""));
-  url.searchParams.set("currency", payload.currency || "UAH");
-  url.searchParams.set("payment_status", paymentStatusLabel(payload.transactionStatus));
-  url.searchParams.set("payment_method", payload.paymentSystem || "WayForPay");
+  url.searchParams.set("order_reference", payment.orderReference);
+  url.searchParams.set("wayforpay_transaction_id", payment.transactionId || payment.invoiceId || "");
+  url.searchParams.set("amount", String(payment.amount || ""));
+  url.searchParams.set("currency", payment.currency);
+  url.searchParams.set("payment_status", paymentStatusLabel(payment.transactionStatus));
+  url.searchParams.set("payment_method", payment.paymentSystem);
   url.searchParams.set("service", "Тестова оплата KVITKA space");
-  url.searchParams.set("client_name", payload.clientName || payload.email || payload.phone || "");
-  url.searchParams.set("telegram_id", payload.telegramId || "");
-  url.searchParams.set("paid_at", secondsToIso(payload.processingDate || payload.createdDate));
-  url.searchParams.set("comment", payload.reason || payload.reasonCode || "");
+  url.searchParams.set("client_name", payment.clientName || payment.email || payment.phone || "");
+  url.searchParams.set("telegram_id", payment.telegramId || "");
+  url.searchParams.set("paid_at", secondsToIso(payment.processingDate || payment.createdDate));
+  url.searchParams.set("comment", payment.reason || payment.reasonCode || "");
 
   await fetch(url, { method: "GET" });
 }
@@ -81,7 +112,8 @@ export default async function handler(request, response) {
   const secretKey = env("WAYFORPAY_SECRET_KEY");
   const rawBody = await readBody(request);
   const payload = parsePayload(request, rawBody);
-  const orderReference = payload.orderReference || "";
+  const payment = normalizePayload(payload);
+  const orderReference = payment.orderReference || "";
   const status = "accept";
   const time = Math.floor(Date.now() / 1000);
   const signature = secretKey ? hmacMd5(secretKey, [orderReference, status, time].join(";")) : "";
