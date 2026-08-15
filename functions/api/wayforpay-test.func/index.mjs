@@ -23,7 +23,7 @@ export default async function handler(request, response) {
   const merchantAccount = env("WAYFORPAY_MERCHANT_ACCOUNT");
   const merchantDomainName = env("WAYFORPAY_MERCHANT_DOMAIN") || "psy-kvitka.vercel.app";
   const secretKey = env("WAYFORPAY_SECRET_KEY");
-  const returnUrl = env("WAYFORPAY_RETURN_URL") || "https://psy-kvitka.vercel.app/?payment=return";
+  const returnUrl = env("WAYFORPAY_RETURN_URL") || "https://psy-kvitka.vercel.app/api/wayforpay-return";
   const serviceUrl = env("WAYFORPAY_SERVICE_URL") || "https://psy-kvitka.vercel.app/api/wayforpay-callback";
 
   if (!merchantAccount || !secretKey) {

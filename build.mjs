@@ -8,7 +8,7 @@ await cp("index.html", ".vercel/output/static/index.html");
 await cp("styles.css", ".vercel/output/static/styles.css");
 await cp("app.js", ".vercel/output/static/app.js");
 await cp("public/kvitka", ".vercel/output/static/public/kvitka", { recursive: true });
-await cp("functions/api/wayforpay-test.func", ".vercel/output/functions/api/wayforpay-test.func", { recursive: true });
+await cp("functions/api", ".vercel/output/functions/api", { recursive: true });
 
 await writeFile(
   ".vercel/output/config.json",
