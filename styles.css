@@ -452,6 +452,7 @@ h1, h2, h3 {
 .detail > span,
 .detail b {
   display: block;
+  margin-top: 22px;
   color: var(--sage-deep);
   font-weight: 700;
 }
@@ -1027,7 +1028,7 @@ h1, h2, h3 {
 
 /* smooth horizontal review carousel at the bottom of each service card */
 .review-carousel-wrap {
-  margin-top: 20px;
+  margin-top: 28px;
 }
 
 .review-carousel-wrap h3 {

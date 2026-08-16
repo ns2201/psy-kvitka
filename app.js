@@ -158,7 +158,7 @@ const services = [
     title: "Сімейна та парна терапія",
     meta: "онлайн і наживо",
     price: "75 EUR",
-    duration: "80 хвилин, перша зустріч — 90 хвилин",
+    duration: "перша зустріч триває довше за наступні",
     image: "./public/kvitka/couples.jpg",
     intro: "Простір не для пошуку винного, а для можливості почути одне одного. Працюємо з конфліктами, віддаленням, втратою довіри та ситуаціями, коли старі способи домовлятися більше не працюють.",
     forWhom: ["ті самі конфлікти повторюються знову", "розмови закінчуються образами або мовчанням", "стало менше близькості й довіри", "важко домовитися про важливе"],
@@ -287,7 +287,7 @@ function renderService(id) {
   }
   document.querySelector("#service-detail-content").innerHTML = `
     <img src="${item.image}" alt="" />
-    <span>${item.meta} · ${item.duration}</span>
+    <span>${item.meta} · ${item.duration.replace("перша зустріч", "<br />перша зустріч")}</span>
     <h2>${item.title}</h2>
     <p>${item.intro}</p>
     <div class="accordion service-accordion">
