@@ -1312,7 +1312,7 @@ h1, h2, h3 {
 }
 
 
-/* home text-only elements */
+/* home text-only elements kept only for old fallback */
 .text-only-actions span,
 .text-only-note {
   display: block;
@@ -1331,6 +1331,10 @@ h1, h2, h3 {
   color: var(--white);
   background: var(--sage);
   border-color: var(--sage);
+}
+
+.hero .actions button {
+  cursor: pointer;
 }
 
 .text-only-note {
