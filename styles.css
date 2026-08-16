@@ -901,15 +901,15 @@ h1, h2, h3 {
 .acc-body {
   display: grid;
   grid-template-rows: 0fr;
-  padding: 0 16px;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.5;
-  transition: grid-template-rows var(--duration) var(--ease), padding var(--duration) var(--ease);
+  transition: grid-template-rows var(--duration) var(--ease);
 }
 
-.acc-body > * {
+.acc-body-inner {
   overflow: hidden;
+  padding: 0 16px;
 }
 
 .acc-body p {
@@ -918,6 +918,9 @@ h1, h2, h3 {
 
 .acc-item.open .acc-body {
   grid-template-rows: 1fr;
+}
+
+.acc-item.open .acc-body-inner {
   padding: 0 16px 14px;
 }
 

@@ -231,7 +231,7 @@ function renderBasics() {
         <b>+</b>
       </button>
       <div class="acc-body">
-        ${topic.items.map((item) => `<p>${item}</p>`).join("")}
+        <div class="acc-body-inner">${topic.items.map((item) => `<p>${item}</p>`).join("")}</div>
       </div>
     </div>
   `).join("");
@@ -321,7 +321,7 @@ function renderFaq() {
         <b>+</b>
       </button>
       <div class="acc-body">
-        <p>${a}</p>
+        <div class="acc-body-inner"><p>${a}</p></div>
       </div>
     </div>
   `).join("");
