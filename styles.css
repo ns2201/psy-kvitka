@@ -1264,3 +1264,49 @@ h1, h2, h3 {
   color: var(--sage-deep);
   font-weight: 600;
 }
+
+
+/* hotfix: readable KVITKA space links only */
+.service-channel a {
+  width: auto;
+  min-height: 0;
+  margin-top: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--sage-deep);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.services .service-channel-link {
+  display: inline-block;
+  width: auto;
+  min-height: 0;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #fffdfa;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(255, 253, 250, 0.75);
+  text-underline-offset: 5px;
+}
+
+.service-channel {
+  padding: 16px;
+}
+
+.service-channel span {
+  margin-bottom: 10px;
+}
