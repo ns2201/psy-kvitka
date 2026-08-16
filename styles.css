@@ -855,3 +855,113 @@ h1, h2, h3 {
   position: relative;
   z-index: 1;
 }
+
+/* accordion — "З чим приходять" */
+.accordion {
+  display: grid;
+  gap: 8px;
+}
+
+.acc-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.acc-head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 0;
+  padding: 15px 16px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.acc-head b {
+  display: grid;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sage-tint);
+  color: var(--sage-deep);
+  font-size: 16px;
+  font-weight: 500;
+  transition: transform var(--duration) var(--ease);
+}
+
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  padding: 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: grid-template-rows var(--duration) var(--ease), padding var(--duration) var(--ease);
+}
+
+.acc-body > * {
+  overflow: hidden;
+}
+
+.acc-body p {
+  margin: 0 0 10px;
+}
+
+.acc-item.open .acc-body {
+  grid-template-rows: 1fr;
+  padding: 0 16px 14px;
+}
+
+.acc-item.open .acc-head b {
+  transform: rotate(45deg);
+}
+
+/* "don't know how to phrase it" block */
+.unclear-block {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--sage-tint);
+  text-align: center;
+}
+
+.unclear-block p {
+  margin: 0 0 12px;
+  color: var(--sage-deep);
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.unclear-block a {
+  display: inline-block;
+  min-height: 42px;
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  color: var(--white);
+  background: var(--sage);
+  font-weight: 700;
+}
+
+/* small text link under hero, instead of a second equal-weight button */
+.link-more {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

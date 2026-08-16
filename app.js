@@ -42,21 +42,50 @@ const events = [
   }
 ];
 
-const pains = [
-  "Тривога, напруга, виснаження, відчуття що сил вистачає лише триматися",
-  "Складно у стосунках: багато болю, конфліктів, мовчання або дистанції",
-  "Еміграція, адаптація в Чехії, втрата звичних опор і себе в новій реальності",
-  "Самоцінність, кордони, сором, провина, постійне порівняння себе з іншими",
-  "Потреба в жіночому колі, групі, живому контакті й підтримці",
-  "Запит є, але його ще важко сформулювати словами"
+const painTopics = [
+  {
+    title: "Тривога, виснаження, втрата сил",
+    items: [
+      "Тіло і психіка виснажені, ніби сил вистачає лише на «протриматись» (хронічна втома, психосоматика)",
+      "Тривога, яка з'являється без очевидної причини, іноді — панічні атаки",
+      "Відчуття «щось зі мною не так», втрата контакту із собою"
+    ]
+  },
+  {
+    title: "Стосунки, близькість і кордони",
+    items: [
+      "Стосунки, з яких важко вийти, навіть коли боляче (емоційна залежність, аб'юзивний досвід)",
+      "Важко відстоювати особисті кордони, важко сказати «ні»",
+      "Страх близькості"
+    ]
+  },
+  {
+    title: "Самооцінка та контакт із собою",
+    items: [
+      "Занижена самооцінка, постійне порівняння себе з іншими",
+      "Пошук внутрішньої опори й самоцінності",
+      "Складно відділитися від батьківських сценаріїв (сепарація)"
+    ]
+  },
+  {
+    title: "Еміграція, втрати та життєві зміни",
+    items: [
+      "Складні періоди: еміграція, втрата, розлучення",
+      "Втрата звичних опор і себе в новій реальності"
+    ]
+  },
+  {
+    title: "Їжа та складні стосунки з тілом",
+    items: [
+      "Їжа стала способом впоратись, а потім приходить сором (розлади харчової поведінки)"
+    ]
+  }
 ];
 
 const changes = [
   "Більше внутрішньої опори й ясності у власних рішеннях",
   "Менше автоматичного терпіння там, де давно болить",
-  "Здатність говорити про потреби без провини й самознецінення",
-  "Новий досвід контакту: з собою, тілом, почуттями й іншими людьми",
-  "Відчуття, що з вами все не «не так», а вам просто потрібен простір і підтримка"
+  "Більше свободи бути собою у стосунках"
 ];
 
 const picker = [
@@ -195,9 +224,26 @@ function showScreen(id) {
 }
 
 function renderBasics() {
-  document.querySelector("#pain-list").innerHTML = pains.map((text) => `<button data-screen="picker">${text}</button>`).join("");
+  document.querySelector("#pain-accordion").innerHTML = painTopics.map((topic, index) => `
+    <div class="acc-item" data-acc="${index}">
+      <button class="acc-head" data-acc-toggle="${index}">
+        <span>${topic.title}</span>
+        <b>+</b>
+      </button>
+      <div class="acc-body">
+        ${topic.items.map((item) => `<p>${item}</p>`).join("")}
+      </div>
+    </div>
+  `).join("");
   document.querySelector("#change-list").innerHTML = changes.map((text) => `<article>${text}</article>`).join("");
   document.querySelector("#cert-list").innerHTML = `<button class="wide secondary" id="cert-toggle">Переглянути документи й сертифікати</button>`;
+  const previewReviews = reviews.slice(0, 3);
+  document.querySelector("#home-review-preview").innerHTML = previewReviews.map(([name, text]) => `
+    <article class="review-card">
+      <p>«${text.length > 130 ? text.slice(0, 130).trim() + "…" : text}»</p>
+      <span>${name}</span>
+    </article>
+  `).join("");
 }
 
 function showCerts() {
@@ -300,6 +346,12 @@ document.addEventListener("click", (event) => {
   if (serviceButton) renderService(serviceButton.dataset.service);
 
   if (event.target.closest("#cert-toggle")) showCerts();
+
+  const accToggle = event.target.closest("[data-acc-toggle]");
+  if (accToggle) {
+    const item = accToggle.closest(".acc-item");
+    item.classList.toggle("open");
+  }
 
   // Any link into Telegram (contactUrl or the community link) should go through
   // Telegram's own deep-link handoff when running inside the mini app, so the
