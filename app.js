@@ -197,7 +197,7 @@ function showScreen(id) {
 function renderBasics() {
   document.querySelector("#pain-list").innerHTML = pains.map((text) => `<button data-screen="picker">${text}</button>`).join("");
   document.querySelector("#change-list").innerHTML = changes.map((text) => `<article>${text}</article>`).join("");
-  document.querySelector("#cert-list").innerHTML = `<button class="wide secondary" id="cert-toggle">Показати документи й сертифікати (${certManifest.length})</button>`;
+  document.querySelector("#cert-list").innerHTML = `<button class="wide secondary" id="cert-toggle">Переглянути документи й сертифікати</button>`;
 }
 
 function showCerts() {
