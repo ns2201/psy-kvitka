@@ -1,7 +1,29 @@
 const contactUrl = "https://t.me/nastia_savanzha";
 const instagramUrl = "https://www.instagram.com/nastia_savanzha/";
 const communityUrl = "https://t.me/+Ab_sesYNrnM2NmFi";
-const testPaymentUrl = "/api/wayforpay-test";
+
+const certManifest = [
+  "certificate_01_portrait.webp",
+  "certificate_02_landscape.webp",
+  "certificate_03_portrait.webp",
+  "certificate_04_landscape.webp",
+  "certificate_05_landscape.webp",
+  "certificate_06_landscape.webp",
+  "certificate_07_landscape.webp",
+  "certificate_08_landscape.webp",
+  "certificate_09_portrait.jpeg",
+  "certificate_10_portrait.jpeg",
+  "certificate_11_landscape.webp",
+  "certificate_12_landscape.webp",
+  "certificate_13_landscape.webp",
+  "certificate_14_landscape.jpeg",
+  "certificate_15_landscape.webp",
+  "certificate_16_landscape.webp",
+  "certificate_17_landscape.webp",
+  "certificate_18_landscape.webp",
+  "certificate_19_landscape.webp",
+  "certificate_20_landscape.webp"
+];
 
 const pains = [
   "Тривога, напруга, виснаження, відчуття що сил вистачає лише триматися",
@@ -22,9 +44,9 @@ const changes = [
 
 const picker = [
   ["Мені тривожно або я виснажена", "individual", "Почніть з індивідуальної терапії. Це найбільш бережний формат, де можна розібратися з тим, що зараз болить, без поспіху й без необхідності пояснювати себе групі."],
-  ["Болить тема стосунків", "couples", "Якщо ви хочете працювати сама - підійде індивідуальна терапія. Якщо запит спільний із партнером або родиною - парна чи сімейна терапія."],
-  ["Хочу коло або групу", "circle", "Жіноче коло підійде для живого контакту й окремої теми. Терапевтична група - для регулярнішої роботи, підтримки й глибшого процесу."],
-  ["Не знаю, що мені потрібно", "individual", "Це нормальна точка входу. Можна залишити заявку без ідеально сформульованого запиту - Наталія допоможе знайти перший крок."]
+  ["Болить тема стосунків", "couples", "Якщо ви хочете працювати сама — підійде індивідуальна терапія. Якщо запит спільний із партнером або родиною — парна чи сімейна терапія."],
+  ["Хочу коло або групу", "circle", "Жіноче коло підійде для живого контакту й окремої теми. Терапевтична група — для регулярнішої роботи, підтримки й глибшого процесу."],
+  ["Не знаю, що мені потрібно", "individual", "Це нормальна точка входу. Можна написати без ідеально сформульованого запиту — Наталія допоможе знайти перший крок."]
 ];
 
 const services = [
@@ -33,7 +55,7 @@ const services = [
     title: "Індивідуальна терапія",
     meta: "онлайн і наживо",
     price: "50 EUR",
-    duration: "50 хвилин, перша зустріч - 60 хвилин",
+    duration: "50 хвилин, перша зустріч — 60 хвилин",
     image: "./public/kvitka/individual.jpg",
     intro: "Особистий простір, де вся увага зосереджена на вас, вашому темпі й тому, що зараз потребує підтримки.",
     forWhom: ["тривога, виснаження, кризи", "еміграція й адаптація", "самоцінність, кордони, провина", "стосунки, розриви, залежність від контакту"],
@@ -46,7 +68,7 @@ const services = [
     title: "Сімейна та парна терапія",
     meta: "онлайн і наживо",
     price: "75 EUR",
-    duration: "80 хвилин, перша зустріч - 90 хвилин",
+    duration: "80 хвилин, перша зустріч — 90 хвилин",
     image: "./public/kvitka/couples.jpg",
     intro: "Простір, де кожен може бути почутим, а конфлікт стає не кінцем контакту, а матеріалом для розуміння.",
     forWhom: ["часті конфлікти або мовчання", "втрата довіри й близькості", "різні потреби в парі", "родинні напруження й повторювані сценарії"],
@@ -58,7 +80,7 @@ const services = [
     id: "group",
     title: "Терапевтична група",
     meta: "онлайн і наживо",
-    price: "дати й ціна в анонсах",
+    price: "дати й ціна — у чаті",
     duration: "регулярні зустрічі за програмою",
     image: "./public/kvitka/group.jpg",
     intro: "Група дає те, чого не дає індивідуальна робота: живе дзеркало, підтримку й досвід бути поруч з іншими без ролей.",
@@ -71,12 +93,12 @@ const services = [
     id: "circle",
     title: "Жіноче коло",
     meta: "наживо",
-    price: "анонси скоро",
+    price: "дати й ціна — у чаті",
     duration: "близько 4 годин",
     image: "./public/kvitka/circle.jpg",
     intro: "Живий простір для теми, яку хочеться не просто зрозуміти, а відчути, прожити й інтегрувати.",
     forWhom: ["потрібна пауза й теплий контакт", "цікаві теми самоцінності, жіночності, кордонів", "хочеться не лекції, а досвіду", "важливе м'яке коло без тиску"],
-    process: "Кожне коло має окрему тему, практики, діалог, тілесність і час для інтеграції. Анонси майбутніх зустрічей з'являються тут і в Telegram.",
+    process: "Кожне коло має окрему тему, практики, діалог, тілесність і час для інтеграції. Дати наступних зустрічей — у Telegram-спільноті й у переписці.",
     result: "Відчуття підтримки, більше контакту з тілом і собою, маленькі чесні рішення після зустрічі.",
     message: "Доброго дня, цікавить жіноче коло."
   },
@@ -95,42 +117,31 @@ const services = [
   }
 ];
 
-const events = [
-  {
-    status: "Скоро",
-    title: "Жіноче коло",
-    topic: "Тема й дата уточнюються",
-    place: "Прага / наживо",
-    text: "Тут будуть майбутні анонси зустрічей: тема, дата, кількість місць, вартість і кнопка оплати."
-  },
-  {
-    status: "Лист очікування",
-    title: "Терапевтична група",
-    topic: "Самоцінність і опора",
-    place: "онлайн / наживо",
-    text: "Можна залишити заявку, щоб першою отримати деталі старту групи."
-  }
-];
-
-const faqs = [
+const faqText = [
   ["Чи потрібно готуватися до першої зустрічі?", "Ні. Достатньо прийти такою, якою ви є зараз. Якщо запит ще нечіткий, ми сформулюємо його разом."],
-  ["Скільки триває терапія?", "Залежить від запиту. Для глибших змін часто потрібен курс зустрічей, але перший крок - зрозуміти, що саме вам потрібно."],
+  ["Скільки триває терапія?", "Залежить від запиту. Рекомендований курс — 10-15 зустрічей, раз на тиждень або раз на два тижні, але перший крок — зрозуміти, що саме вам потрібно."],
   ["Чи можна отримати компенсацію страхової?", "Так, частково, залежно від страхової програми в Чехії. Наталія допоможе зорієнтуватися з умовами."],
+  ["Чи працюєте з панічними атаками або депресією?", "Так, це одні з найчастіших запитів у роботі. Ми розбираємось, що саме стоїть за станом, і будуємо роботу з ним."],
   ["Що, якщо після розмови стане важче?", "Ми йдемо в темпі, який ви можете витримати. У терапії важливо не ламати себе, а поступово повертати контакт і опору."],
-  ["З чим Наталія не працює?", "Не працює з алкогольною та наркотичною залежністю. У кризових станах, де є загроза життю, потрібна негайна кризова допомога."]
+  ["З чим Наталія не працює?", "Не працює з алкогольною та наркотичною залежністю. У кризових станах, де є загроза життю, потрібна негайна кризова допомога, не онлайн-терапія."]
 ];
 
-const certs = ["cert-trauma.jpg", "cert-eating.jpg", "cert-migis.jpg", "cert-resilience.jpg", "cert-psychotherapy.jpg", "cert-migis-2.jpg"];
+const reviews = [
+  ["Оксана", "Спасибо тебе за мою новую версию – за мою настоящую версию, которая всегда во мне была, только я боялась быть настоящей. Теперь я умею выставлять границы, умею говорить «нет», умею выбирать себя."],
+  ["Марина", "Ситуації, які я не могла зрозуміти/вирішити роками вирішувались за одну сесію, залишаючи усвідомлення і відчуття, що життя змінюється на краще. Навчилась будувати здорові відносини з собою, з дітьми, з чоловіком і з оточуючими."],
+  ["Эля", "Я потеряла личные границы, самооценка и самоценность упали. Но я попала к Наталье... Она смогла меня развернуть, помогла посмотреть по сторонам, вокруг себя. Выбирать себя, любить себя, ценить себя. Я реально ожила."],
+  ["Вікторія", "З тобою я поступово вчуся обирати себе — не різко, не боляче, а з турботою й повагою. На сесіях завжди багато тепла, прийняття й водночас глибини. З'являється відчуття опори й віри в себе."],
+  ["Анастасія", "Це той рідкий спеціаліст, рядом з яким чувствуешь себя в безопасности, принятой и услышанной по-настоящему. Каждая встреча — это пространство без осуждения, где можно быть собой."],
+  ["Людмила", "За ці до 10 сесій я отримала багато цінних усвідомлень про себе, свої реакції та внутрішні причини того, що зі мною відбувається. Мені було дуже важливо відчувати безпечний, підтримуючий простір."],
+  ["Клієнтка KVITKA space", "Я попала к тебе в очень сложный период моей жизни... Уже через два місяці нашої роботи я стала почувати себе набагато краще. А через рік — з'явились внутрішні опори, я стала впевненіша в собі."],
+  ["Клієнтка KVITKA space", "Я дуже задоволена результатами терапії з Наталією! Я прийшла з запитом покращити якість свого життя, налагодити стосунки з близькими і знайти сили та енергію до життя. Зараз я почуваюсь набагато впевненіше."]
+];
 
 const screens = [...document.querySelectorAll(".screen")];
 const navButtons = [...document.querySelectorAll(".nav button")];
 
 function link(message) {
   return `${contactUrl}?text=${encodeURIComponent(message)}`;
-}
-
-function paymentHref() {
-  return testPaymentUrl || link("Доброго дня, хочу протестувати оплату 1 грн через WayForPay.");
 }
 
 function showScreen(id) {
@@ -144,7 +155,7 @@ function showScreen(id) {
 function renderBasics() {
   document.querySelector("#pain-list").innerHTML = pains.map((text) => `<button data-screen="picker">${text}</button>`).join("");
   document.querySelector("#change-list").innerHTML = changes.map((text) => `<article>${text}</article>`).join("");
-  document.querySelector("#cert-list").innerHTML = certs.map((name) => `<img src="./public/kvitka/${name}" alt="" />`).join("");
+  document.querySelector("#cert-list").innerHTML = certManifest.map((name) => `<img src="./public/kvitka/certs/${name}" alt="Сертифікат" loading="lazy" />`).join("");
 }
 
 function renderPicker(active = 0) {
@@ -154,7 +165,7 @@ function renderPicker(active = 0) {
     <h3>${item[0]}</h3>
     <p>${item[2]}</p>
     <button data-service="${item[1]}">Детальніше про формат</button>
-    <a href="${link("Доброго дня, хочу зрозуміти, який формат мені підійде.")}" target="_blank" rel="noreferrer">Залишити заявку</a>
+    <a href="${link("Доброго дня, хочу зрозуміти, який формат мені підійде.")}" target="_blank" rel="noreferrer">Написати Наталії</a>
   `;
 }
 
@@ -189,32 +200,22 @@ function renderService(id) {
       <p>${item.result}</p>
     </div>
     <b>${item.price}</b>
-    <a href="${link(item.message)}" target="_blank" rel="noreferrer">Залишити заявку</a>
-    <a class="secondary" href="${paymentHref()}" target="_blank" rel="noreferrer">${testPaymentUrl ? "Тестова оплата 1 грн" : "Тестова оплата 1 грн - після підключення WayForPay"}</a>
+    <a href="${link(item.message)}" target="_blank" rel="noreferrer">Написати Наталії</a>
   `;
   showScreen("service-detail");
 }
 
-function renderEvents() {
-  document.querySelector("#event-list").innerHTML = events.map((event) => `
-    <article>
-      <span>${event.status}</span>
-      <h3>${event.title}</h3>
-      <b>${event.topic}</b>
-      <p>${event.place}</p>
-      <p>${event.text}</p>
-      <a href="${link(`Доброго дня, хочу в лист очікування: ${event.title}.`)}" target="_blank" rel="noreferrer">У лист очікування</a>
+function renderReviews() {
+  document.querySelector("#review-list").innerHTML = reviews.map(([name, text]) => `
+    <article class="review-card">
+      <p>«${text}»</p>
+      <span>${name}</span>
     </article>
   `).join("");
 }
 
 function renderFaq() {
-  document.querySelector("#faq-list").innerHTML = faqs.map((item, index) => `
-    <article>
-      <button data-faq="${index}"><span>${item[0]}</span><b>+</b></button>
-      <p>${item[1]}</p>
-    </article>
-  `).join("");
+  document.querySelector("#faq-text").innerHTML = faqText.map(([q, a]) => `<p><strong>${q}</strong><br />${a}</p>`).join("");
 }
 
 document.addEventListener("click", (event) => {
@@ -233,9 +234,6 @@ document.addEventListener("click", (event) => {
 
   const serviceButton = event.target.closest("[data-service]");
   if (serviceButton) renderService(serviceButton.dataset.service);
-
-  const faqButton = event.target.closest("[data-faq]");
-  if (faqButton) faqButton.closest("article").classList.toggle("open");
 });
 
 window.Telegram?.WebApp?.ready();
@@ -245,5 +243,5 @@ window.Telegram?.WebApp?.BackButton?.onClick(() => showScreen("home"));
 renderBasics();
 renderPicker();
 renderServices();
-renderEvents();
+renderReviews();
 renderFaq();

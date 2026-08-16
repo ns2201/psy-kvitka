@@ -28,7 +28,7 @@
             <p>Зовні — усе під контролем. Всередині — втома, яка нікуди не зникає, і відчуття, що ти давно не була собою.</p>
             <div class="actions">
               <button data-screen="picker">Підібрати формат</button>
-              <button data-screen="events">Кола й групи</button>
+              <button data-screen="formats">Усі формати</button>
             </div>
           </div>
         </article>
@@ -47,6 +47,13 @@
           <div class="heading"><span>✣ Що зміниться</span><h2>Після терапії ви повернетеся до себе</h2></div>
           <div class="change-list" id="change-list"></div>
         </article>
+
+        <article class="panel">
+          <div class="heading"><span>✣ Відгуки</span><h2>Що кажуть клієнтки</h2></div>
+          <div class="review-strip" id="home-review-preview">
+            <button class="wide" data-screen="reviews">Читати відгуки</button>
+          </div>
+        </article>
       </section>
 
       <section class="screen" id="picker">
@@ -62,7 +69,6 @@
           <div class="heading"><span>✣ Формати</span><h2>Оберіть формат, який відгукується</h2></div>
           <div class="services" id="service-list"></div>
           <button class="wide" data-screen="insurance">Страхова компенсація</button>
-          <button class="wide secondary" data-screen="payment">Тестова оплата 1 грн</button>
         </article>
       </section>
 
@@ -102,37 +108,42 @@
         </article>
       </section>
 
+      <section class="screen" id="reviews">
+        <article class="panel">
+          <div class="heading"><span>✣ Відгуки</span><h2>Що кажуть клієнтки</h2></div>
+          <div class="review-list" id="review-list"></div>
+        </article>
+      </section>
+
       <section class="screen" id="faq">
         <article class="panel">
           <div class="heading"><span>✣ FAQ</span><h2>Питання, які часто виникають</h2></div>
-          <div class="faq" id="faq-list"></div>
+          <div class="faq-text" id="faq-text"></div>
         </article>
       </section>
 
-      <section class="screen" id="events">
+      <section class="screen" id="rules">
         <article class="panel">
-          <div class="heading"><span>✣ Кола й групи</span><h2>Майбутні зустрічі</h2></div>
-          <div class="event-list" id="event-list"></div>
-        </article>
-      </section>
-
-      <section class="screen" id="payment">
-        <article class="panel">
-          <div class="heading"><span>✣ Оплата</span><h2>Тестова оплата 1 грн</h2></div>
+          <div class="heading"><span>✣ Правила співпраці</span><h2>Щоб у нас не було непорозумінь</h2></div>
           <div class="detail">
-            <p>Оплату через WayForPay підключаємо через серверну частину, щоб секретний ключ ФОП не був відкритий у mini app.</p>
-            <p>Після додавання `merchantAccount` і `secretKey` кнопка створюватиме безпечний платіж на 1 грн для тесту.</p>
-            <a data-contact="Доброго дня, хочу протестувати оплату 1 грн через WayForPay.">Запитати тестову оплату</a>
+            <h3>Моя відповідальність</h3>
+            <p>Я приходжу вчасно й завчасно повідомляю про зміни в графіку. Все, що відбувається на сесії, лишається конфіденційним.</p>
+            <h3>Ваша відповідальність</h3>
+            <p>Прошу приходити вчасно та оплачувати сесії вчасно. Скасування менш ніж за 24 години — 50% вартості, неявка без попередження — 100%. Виняток — хвороба чи форс-мажор.</p>
+            <h3>Ще кілька моментів</h3>
+            <p>Рекомендований курс — 10-15 зустрічей, раз на тиждень або раз на два тижні. Вартість може переглядатись не частіше раза на рік, з попередженням заздалегідь.</p>
+            <p>Між сесіями в переписці — лише організаційні питання (запис, перенесення, оплата); теми терапії обговорюємо тільки на сесіях. Відповідаю з 09:00 до 20:00 за празьким часом.</p>
           </div>
         </article>
       </section>
 
-      <section class="screen" id="legal">
+      <section class="screen" id="privacy">
         <article class="panel">
-          <div class="heading"><span>✣ Документи</span><h2>Політика й оферта</h2></div>
+          <div class="heading"><span>✣ Конфіденційність</span><h2>Які дані ми зберігаємо</h2></div>
           <div class="detail">
-            <p>Тут буде політика конфіденційності, згода на обробку персональних даних, умови скасування/перенесення, межі терапевтичного контакту й оферта.</p>
-            <p>Ці тексти потрібно фінально юридично перевірити перед запуском реклами й оплат.</p>
+            <p>Коли ви пишете в чат-бот, ми зберігаємо ваше ім'я, юзернейм і Telegram ID — щоб зв'язатись із вами й вести облік записів.</p>
+            <p>Ці дані бачить лише Наталія, вони не передаються третім особам і не використовуються для реклами.</p>
+            <p>Ви можете попросити видалити свої дані в будь-який момент — напишіть про це в чат.</p>
           </div>
         </article>
       </section>
@@ -146,8 +157,8 @@
             <a data-contact="Доброго дня, хочу записатися на консультацію.">Написати Наталії</a>
             <a class="secondary" href="https://www.instagram.com/nastia_savanzha/" target="_blank" rel="noreferrer">Instagram</a>
             <a class="secondary" href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer">Приєднатися до KVITKA space</a>
-            <a class="secondary" data-screen="payment">Тестова оплата 1 грн</a>
-            <a class="secondary" data-screen="legal">Політика й оферта</a>
+            <a class="secondary" data-screen="rules">Правила співпраці</a>
+            <a class="secondary" data-screen="privacy">Конфіденційність</a>
           </div>
         </article>
       </section>
@@ -155,8 +166,8 @@
       <nav class="nav">
         <button class="active" data-screen="home"><span>✾</span>Головна</button>
         <button data-screen="formats"><span>◇</span>Формати</button>
-        <button data-screen="events"><span>◌</span>Кола</button>
-        <button data-screen="payment"><span>₴</span>Оплата</button>
+        <button data-screen="about"><span>●</span>Наталія</button>
+        <button data-screen="faq"><span>?</span>FAQ</button>
         <button data-screen="contact"><span>↗</span>Контакт</button>
       </nav>
     </main>
