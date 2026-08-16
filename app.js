@@ -3,26 +3,43 @@ const instagramUrl = "https://www.instagram.com/nastia_savanzha/";
 const communityUrl = "https://t.me/+Ab_sesYNrnM2NmFi";
 
 const certManifest = [
-  "certificate_01_portrait.webp",
-  "certificate_02_landscape.webp",
-  "certificate_03_portrait.webp",
-  "certificate_04_landscape.webp",
-  "certificate_05_landscape.webp",
-  "certificate_06_landscape.webp",
-  "certificate_07_landscape.webp",
-  "certificate_08_landscape.webp",
-  "certificate_09_portrait.jpeg",
-  "certificate_10_portrait.jpeg",
-  "certificate_11_landscape.webp",
-  "certificate_12_landscape.webp",
-  "certificate_13_landscape.webp",
-  "certificate_14_landscape.jpeg",
-  "certificate_15_landscape.webp",
-  "certificate_16_landscape.webp",
-  "certificate_17_landscape.webp",
-  "certificate_18_landscape.webp",
-  "certificate_19_landscape.webp",
-  "certificate_20_landscape.webp"
+  "certificate_01_portrait.jpg",
+  "certificate_02_landscape.jpg",
+  "certificate_03_portrait.jpg",
+  "certificate_04_landscape.jpg",
+  "certificate_05_landscape.jpg",
+  "certificate_06_landscape.jpg",
+  "certificate_07_landscape.jpg",
+  "certificate_08_landscape.jpg",
+  "certificate_09_portrait.jpg",
+  "certificate_10_portrait.jpg",
+  "certificate_11_landscape.jpg",
+  "certificate_12_landscape.jpg",
+  "certificate_13_landscape.jpg",
+  "certificate_14_landscape.jpg",
+  "certificate_15_landscape.jpg",
+  "certificate_16_landscape.jpg",
+  "certificate_17_landscape.jpg",
+  "certificate_18_landscape.jpg",
+  "certificate_19_landscape.jpg",
+];
+
+const events = [
+  {
+    title: "Жіноче коло",
+    status: "Дата уточнюється",
+    text: "Найближче коло ще формується. Слідкуйте за анонсом у KVITKA space або напишіть, щоб потрапити в список очікування."
+  },
+  {
+    title: "Терапевтична група",
+    status: "Дата уточнюється",
+    text: "Набір у нову групу ще не стартував. Напишіть, щоб дізнатися першою, коли відкриється запис."
+  },
+  {
+    title: "Трансформаційна гра",
+    status: "За запитом",
+    text: "Проводиться індивідуально або в малій групі за домовленістю — напишіть, щоб підібрати зручну дату."
+  }
 ];
 
 const pains = [
@@ -57,7 +74,7 @@ const services = [
     price: "50 EUR",
     duration: "50 хвилин, перша зустріч — 60 хвилин",
     image: "./public/kvitka/individual.jpg",
-    intro: "Особистий простір, де вся увага зосереджена на вас, вашому темпі й тому, що зараз потребує підтримки.",
+    intro: "Особистий простір, де вся увага зосереджена на вас. Працюємо з вашим запитом у комфортному темпі: кризами, тривогою, самоцінністю, стосунками, втратою себе чи складними життєвими змінами.",
     forWhom: ["тривога, виснаження, кризи", "еміграція й адаптація", "самоцінність, кордони, провина", "стосунки, розриви, залежність від контакту"],
     process: "На першій зустрічі ми прояснюємо запит, домовляємося про формат і темп. Далі працюємо з почуттями, тілесними реакціями, повторюваними сценаріями й тим, як ви будуєте контакт із собою та людьми.",
     result: "Більше ясності, опори, чесності із собою й здатності обирати не з виживання, а з контакту з собою.",
@@ -70,7 +87,7 @@ const services = [
     price: "75 EUR",
     duration: "80 хвилин, перша зустріч — 90 хвилин",
     image: "./public/kvitka/couples.jpg",
-    intro: "Простір, де кожен може бути почутим, а конфлікт стає не кінцем контакту, а матеріалом для розуміння.",
+    intro: "Простір, у якому кожен може бути почутим. Допомагаю парам і родинам краще розуміти одне одного, знаходити нові способи взаємодії, проживати конфлікти й відновлювати довіру та близькість.",
     forWhom: ["часті конфлікти або мовчання", "втрата довіри й близькості", "різні потреби в парі", "родинні напруження й повторювані сценарії"],
     process: "Ми дивимося не лише на зміст сварок, а й на те, як саме пара або родина втрачає контакт. Важливо, щоб у роботі було місце для обох сторін.",
     result: "Більше зрозумілості, чеснішої комунікації, меж і можливості домовлятися без руйнування зв'язку.",
@@ -83,7 +100,7 @@ const services = [
     price: "анонси в KVITKA space",
     duration: "регулярні зустрічі за програмою",
     image: "./public/kvitka/group.jpg",
-    intro: "Група дає те, чого не дає індивідуальна робота: живе дзеркало, підтримку й досвід бути поруч з іншими без ролей.",
+    intro: "Шлях змін у невеликій групі жінок. Регулярні зустрічі, підтримка між сесіями та можливість побачити свій досвід у безпечному просторі поруч з іншими.",
     forWhom: ["хочеться підтримки жінок", "є тема самоцінності або кордонів", "важко проявлятися", "ви часто почуваєтеся самі зі своїм досвідом"],
     process: "У групі є правила конфіденційності, темп і структура. Ми працюємо через розмову, вправи, контакт і помічання того, що відбувається між учасницями.",
     result: "Менше самотності, більше сміливості проявлятися й новий досвід безпечного контакту.",
@@ -96,7 +113,7 @@ const services = [
     price: "анонси в KVITKA space",
     duration: "близько 4 годин",
     image: "./public/kvitka/circle.jpg",
-    intro: "Живий простір для теми, яку хочеться не просто зрозуміти, а відчути, прожити й інтегрувати.",
+    intro: "Чотири години живого контакту, практик і щирих розмов. Кожна зустріч присвячена окремій темі: самоцінності, внутрішній дитині, жіночності, кордонам, довірі до себе чи стосункам.",
     forWhom: ["потрібна пауза й теплий контакт", "цікаві теми самоцінності, жіночності, кордонів", "хочеться не лекції, а досвіду", "важливе м'яке коло без тиску"],
     process: "Кожне коло має окрему тему, практики, діалог, тілесність і час для інтеграції. Дати наступних зустрічей — у Telegram-спільноті й у переписці.",
     result: "Відчуття підтримки, більше контакту з тілом і собою, маленькі чесні рішення після зустрічі.",
@@ -109,7 +126,7 @@ const services = [
     price: "за домовленістю",
     duration: "індивідуально або в малій групі",
     image: "./public/kvitka/game.jpg",
-    intro: "Метафоричний формат, який допомагає побачити ситуацію з іншого ракурсу, коли напряму відповідь не знаходиться.",
+    intro: "М'який і водночас глибокий формат самопізнання. Через символи, образи та метафори ви по-новому бачите свою ситуацію, знаходите внутрішні ресурси й відкриваєте нові рішення.",
     forWhom: ["є питання, але немає ясності", "хочеться м'якого формату", "потрібно побачити ресурси й обмеження", "цікавий символічний спосіб роботи"],
     process: "Через символи, образи й запит ми досліджуємо вашу ситуацію, можливі рішення й внутрішні опори.",
     result: "Більше ясності, нові варіанти дій і відчуття, що ситуація не така безвихідна, як здавалось.",
@@ -156,6 +173,10 @@ function showScreen(id) {
 function renderBasics() {
   document.querySelector("#pain-list").innerHTML = pains.map((text) => `<button data-screen="picker">${text}</button>`).join("");
   document.querySelector("#change-list").innerHTML = changes.map((text) => `<article>${text}</article>`).join("");
+  document.querySelector("#cert-list").innerHTML = `<button class="wide secondary" id="cert-toggle">Показати документи й сертифікати (${certManifest.length})</button>`;
+}
+
+function showCerts() {
   document.querySelector("#cert-list").innerHTML = certManifest.map((name) => `<img src="./public/kvitka/certs/${name}" alt="Сертифікат" loading="lazy" />`).join("");
 }
 
@@ -223,7 +244,18 @@ function renderReviews() {
 }
 
 function renderFaq() {
-  document.querySelector("#faq-text").innerHTML = faqText.map(([q, a]) => `<p><strong>${q}</strong><br />${a}</p>`).join("");
+  document.querySelector("#faq-text").innerHTML = faqText.map(([q, a]) => `<div class="faq-item"><p class="faq-q">${q}</p><p class="faq-a">${a}</p></div>`).join("");
+}
+
+function renderEvents() {
+  document.querySelector("#event-list").innerHTML = events.map((e) => `
+    <article class="event-card">
+      <span>${e.status}</span>
+      <h3>${e.title}</h3>
+      <p>${e.text}</p>
+      <a href="${link(`Доброго дня, цікавить ${e.title.toLowerCase()} — підкажіть, будь ласка, коли найближча дата.`)}" target="_blank" rel="noreferrer">Дізнатися дату</a>
+    </article>
+  `).join("");
 }
 
 document.addEventListener("click", (event) => {
@@ -242,6 +274,8 @@ document.addEventListener("click", (event) => {
 
   const serviceButton = event.target.closest("[data-service]");
   if (serviceButton) renderService(serviceButton.dataset.service);
+
+  if (event.target.closest("#cert-toggle")) showCerts();
 });
 
 window.Telegram?.WebApp?.ready();
@@ -253,3 +287,4 @@ renderPicker();
 renderServices();
 renderReviews();
 renderFaq();
+renderEvents();
