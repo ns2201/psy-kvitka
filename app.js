@@ -265,9 +265,7 @@ function renderPicker(active = 0) {
 }
 
 function renderServices() {
-  const priceHtml = (item) => item.price.includes("KVITKA space")
-    ? `<a class="service-channel-link" href="${communityUrl}" target="_blank" rel="noreferrer">Анонси в KVITKA space ↗</a>`
-    : `<b>${item.price}</b>`;
+  const priceHtml = (item) => `<b>${item.price}</b>`;
 
   document.querySelector("#service-list").innerHTML = services.map((item) => `
     <button data-service="${item.id}">
