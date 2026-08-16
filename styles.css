@@ -1005,3 +1005,33 @@ h1, h2, h3 {
 .contact-legal span {
   margin: 0 6px;
 }
+
+/* smooth horizontal review carousel at the bottom of each service card */
+.review-carousel-wrap {
+  margin-top: 20px;
+}
+
+.review-carousel-wrap h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.review-carousel {
+  display: flex;
+  gap: 12px;
+  margin: 0 -16px;
+  padding: 0 16px 6px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.review-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.review-slide {
+  flex: 0 0 82%;
+  scroll-snap-align: start;
+}
