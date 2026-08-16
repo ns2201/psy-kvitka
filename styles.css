@@ -175,8 +175,12 @@ h1, h2, h3 {
 .hero::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(23, 25, 15, 0.72), rgba(23, 25, 15, 0.05) 58%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 38%;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(246, 241, 234, 0.62) 0%, rgba(246, 241, 234, 0.32) 45%, rgba(246, 241, 234, 0) 100%);
 }
 
 .hero > div {
@@ -185,10 +189,6 @@ h1, h2, h3 {
   right: 20px;
   bottom: 22px;
   z-index: 2;
-  padding: 16px 16px 4px;
-  border-radius: var(--radius-md);
-  background: rgba(246, 241, 234, 0.16);
-  backdrop-filter: blur(2px);
 }
 
 .hero span,
@@ -203,7 +203,7 @@ h1, h2, h3 {
 }
 
 .hero span {
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--sage-deep);
 }
 
 .hero h1 {
@@ -212,11 +212,12 @@ h1, h2, h3 {
   font-weight: 600;
   font-size: 26px;
   line-height: 1.18;
+  color: var(--ink);
 }
 
 .hero p {
   margin: 0 0 18px;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.45;
 }
@@ -252,9 +253,9 @@ h1, h2, h3 {
 }
 
 .actions a {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: var(--sage-deep);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(95, 122, 90, 0.35);
 }
 
 .wide.secondary,
