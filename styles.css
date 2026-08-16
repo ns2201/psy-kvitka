@@ -178,9 +178,9 @@ h1, h2, h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 30%;
+  top: 55%;
   z-index: 1;
-  background: linear-gradient(0deg, rgba(246, 241, 234, 0.97) 0%, rgba(246, 241, 234, 0.9) 30%, rgba(246, 241, 234, 0.55) 60%, rgba(246, 241, 234, 0) 100%);
+  background: linear-gradient(0deg, rgba(246, 241, 234, 0.98) 0%, rgba(246, 241, 234, 0.94) 40%, rgba(246, 241, 234, 0.5) 75%, rgba(246, 241, 234, 0) 100%);
 }
 
 .hero > div {
@@ -203,7 +203,7 @@ h1, h2, h3 {
 }
 
 .hero span {
-  color: var(--sage-deep);
+  color: var(--ink);
 }
 
 .hero h1 {
@@ -217,7 +217,7 @@ h1, h2, h3 {
 
 .hero p {
   margin: 0 0 18px;
-  color: var(--muted);
+  color: var(--ink);
   font-size: 16px;
   line-height: 1.45;
 }
@@ -242,6 +242,15 @@ h1, h2, h3 {
   background: var(--sage);
   font-weight: 700;
   text-align: center;
+}
+
+.actions button,
+.actions a {
+  padding: 13px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .actions button:active,
