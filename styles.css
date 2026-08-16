@@ -178,9 +178,9 @@ h1, h2, h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 38%;
+  top: 30%;
   z-index: 1;
-  background: linear-gradient(0deg, rgba(246, 241, 234, 0.62) 0%, rgba(246, 241, 234, 0.32) 45%, rgba(246, 241, 234, 0) 100%);
+  background: linear-gradient(0deg, rgba(246, 241, 234, 0.97) 0%, rgba(246, 241, 234, 0.9) 30%, rgba(246, 241, 234, 0.55) 60%, rgba(246, 241, 234, 0) 100%);
 }
 
 .hero > div {
@@ -729,13 +729,11 @@ h1, h2, h3 {
 }
 
 /* subtle layout rhythm: offset alternating cards instead of a flat grid */
-.chips button:nth-child(even),
-.change-list article:nth-child(even) {
+.chips button:nth-child(even) {
   margin-top: 14px;
 }
 
-.chips button:nth-child(odd),
-.change-list article:nth-child(odd) {
+.chips button:nth-child(odd) {
   margin-bottom: 14px;
 }
 
@@ -1040,4 +1038,77 @@ h1, h2, h3 {
 .review-slide {
   flex: 0 0 82%;
   scroll-snap-align: start;
+}
+
+/* stat badges on About screen */
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.stat-badge {
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  background: var(--sage-tint);
+  text-align: center;
+}
+
+.stat-badge strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--sage-deep);
+  line-height: 1.1;
+}
+
+.stat-badge span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* rich credential items: title + description, used in "Професійна діяльність" */
+.cred-item {
+  margin-bottom: 14px;
+}
+
+.cred-item:last-child {
+  margin-bottom: 0;
+}
+
+.cred-item strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink);
+  font-weight: 750;
+  font-size: 14.5px;
+}
+
+.cred-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.closing-quote {
+  margin-top: 20px;
+  padding: 18px;
+  border-left: 3px solid var(--sage);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.closing-quote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--sage-deep);
 }
