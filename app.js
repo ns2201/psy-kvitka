@@ -3,25 +3,25 @@ const instagramUrl = "https://www.instagram.com/nastia_savanzha/";
 const communityUrl = "https://t.me/+Ab_sesYNrnM2NmFi";
 
 const certManifest = [
-  "certificate_01_portrait.jpg",
-  "certificate_02_landscape.jpg",
-  "certificate_03_portrait.jpg",
-  "certificate_04_landscape.jpg",
-  "certificate_05_landscape.jpg",
-  "certificate_06_landscape.jpg",
-  "certificate_07_landscape.jpg",
   "certificate_08_landscape.jpg",
+  "certificate_18_landscape.jpg",
+  "certificate_16_landscape.jpg",
+  "certificate_13_landscape.jpg",
+  "certificate_15_landscape.jpg",
+  "certificate_12_landscape.jpg",
+  "certificate_17_landscape.jpg",
+  "certificate_04_landscape.jpg",
+  "certificate_07_landscape.jpg",
+  "certificate_11_landscape.jpg",
   "certificate_09_portrait.jpg",
   "certificate_10_portrait.jpg",
-  "certificate_11_landscape.jpg",
-  "certificate_12_landscape.jpg",
-  "certificate_13_landscape.jpg",
   "certificate_14_landscape.jpg",
-  "certificate_15_landscape.jpg",
-  "certificate_16_landscape.jpg",
-  "certificate_17_landscape.jpg",
-  "certificate_18_landscape.jpg",
-  "certificate_19_landscape.jpg",
+  "certificate_02_landscape.jpg",
+  "certificate_03_portrait.jpg",
+  "certificate_20_landscape.jpg",
+  "certificate_01_portrait.jpg",
+  "certificate_05_landscape.jpg",
+  "certificate_06_landscape.jpg"
 ];
 
 const events = [
@@ -166,6 +166,11 @@ function link(message) {
   return `${contactUrl}?text=${encodeURIComponent(message)}`;
 }
 
+function inRealTelegram() {
+  const tg = window.Telegram?.WebApp;
+  return Boolean(tg && tg.initData && tg.initData.length > 0);
+}
+
 function wireContactLinks() {
   document.querySelectorAll("[data-contact]").forEach((el) => {
     const url = link(el.dataset.contact);
@@ -173,10 +178,9 @@ function wireContactLinks() {
     el.target = "_blank";
     el.rel = "noreferrer";
     el.addEventListener("click", (event) => {
-      const tg = window.Telegram?.WebApp;
-      if (tg?.openTelegramLink) {
+      if (inRealTelegram()) {
         event.preventDefault();
-        tg.openTelegramLink(url);
+        window.Telegram.WebApp.openTelegramLink(url);
       }
     });
   });
@@ -301,10 +305,9 @@ document.addEventListener("click", (event) => {
   // Telegram's own deep-link handoff when running inside the mini app, so the
   // pre-filled message text is preserved instead of being dropped.
   const telegramLink = event.target.closest(`a[href^="${contactUrl}"], a[href^="${communityUrl}"]`);
-  const tg = window.Telegram?.WebApp;
-  if (telegramLink && tg?.openTelegramLink) {
+  if (telegramLink && inRealTelegram()) {
     event.preventDefault();
-    tg.openTelegramLink(telegramLink.href);
+    window.Telegram.WebApp.openTelegramLink(telegramLink.href);
   }
 });
 
