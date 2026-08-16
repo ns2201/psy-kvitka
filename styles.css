@@ -1,19 +1,19 @@
 :root {
-  /* ---- palette ---- */
-  --cream: #f9f8f3;
-  --sage: #5f7a5a;
-  --sage-deep: #4a6146;
-  --sage-tint: rgba(95, 122, 90, 0.12);
-  --glow: #d9822b;
-  --glow-soft: rgba(217, 130, 43, 0.24);
-  --ink: #17190f;
-  --muted: #6b6f5f;
-  --line: rgba(23, 25, 15, 0.12);
-  --white: #ffffff;
+  /* ---- palette: powder / beige / taupe ---- */
+  --cream: #f6f1ea;
+  --sage: #a98a72;
+  --sage-deep: #8a6c56;
+  --sage-tint: rgba(169, 138, 114, 0.14);
+  --glow: #c9a48a;
+  --glow-soft: rgba(201, 164, 138, 0.28);
+  --ink: #2b241f;
+  --muted: #8a7d72;
+  --line: rgba(43, 36, 31, 0.1);
+  --white: #fffdfa;
 
   /* legacy aliases still referenced in markup/JS */
   --bg: var(--cream);
-  --panel: #ffffff;
+  --panel: #fffdfa;
   --green: var(--sage);
 
   /* ---- typography ---- */
@@ -207,8 +207,8 @@ h1, h2, h3 {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
-  font-size: 44px;
-  line-height: 1.08;
+  font-size: 32px;
+  line-height: 1.15;
 }
 
 .hero p {
@@ -274,8 +274,8 @@ h1, h2, h3 {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
-  font-size: 26px;
-  line-height: 1.18;
+  font-size: 20px;
+  line-height: 1.25;
 }
 
 .bridge span,
@@ -288,9 +288,9 @@ h1, h2, h3 {
 
 .heading h2 {
   margin: 0 0 18px;
-  font-size: 26px;
+  font-size: 21px;
   font-style: italic;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .chips,
@@ -643,11 +643,11 @@ h1, h2, h3 {
 
 @media (max-width: 380px) {
   .hero h1 {
-    font-size: 34px;
+    font-size: 26px;
   }
 
   .heading h2 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .chips,
@@ -728,4 +728,15 @@ h1, h2, h3 {
   height: 6px;
   border-radius: 50%;
   background: var(--glow);
+}
+
+/* subtle layout rhythm: offset alternating cards instead of a flat grid */
+.chips button:nth-child(even),
+.change-list article:nth-child(even) {
+  margin-top: 14px;
+}
+
+.chips button:nth-child(odd),
+.change-list article:nth-child(odd) {
+  margin-bottom: 14px;
 }
