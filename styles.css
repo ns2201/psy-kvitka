@@ -740,3 +740,29 @@ h1, h2, h3 {
 .change-list article:nth-child(odd) {
   margin-bottom: 14px;
 }
+
+.hero-top {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  z-index: 2;
+  color: var(--white);
+}
+
+.hero-top strong {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+
+.hero-top span {
+  display: block;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
