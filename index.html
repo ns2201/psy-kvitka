@@ -108,17 +108,21 @@
           <div class="detail">
             <img src="./public/kvitka/about.jpg" alt="Наталія Квітка" />
             <p>Я гештальт-терапевтка. Поруч зі мною жінки знаходять внутрішню опору, повертають довіру до себе й відчуття власної цінності — проходять через кризи, складні стосунки й життєві зміни.</p>
-            <p>Повертаю в цілісність після болю, важких втрат, розлучень. Я працюю з важкими заблокованими переживаннями, які людям часто складно розпізнати самостійно — допомагаю навчитися впізнавати ці почуття й проживати їх, а не носити в собі. Саме тоді стає легше.</p>
             <p>З 2022 року живу і працюю в Чехії. Чотири роки працювала в Національному інституті психічного здоров'я (NUDZ) у проєкті підтримки українців — бачила зблизька, наскільки різним буває досвід еміграції. Зараз веду приватну практику, працюю відповідно до професійних стандартів психотерапії Чехії й співпрацюю з чеськими страховими.</p>
-            <div class="info-block">
-              <h3>Професійна діяльність</h3>
-              <ul class="credentials">
-                <li>Членкиня Чеської асоціації психотерапії (ČAP)</li>
-                <li>Психолог у здравотництві Чехії</li>
-                <li>Гештальт-терапевтка, МІГІС</li>
-                <li>Магістриня психології</li>
-                <li>Супервізорка в навчанні</li>
-              </ul>
+            <div class="accordion">
+              <div class="acc-item" data-acc="prof">
+                <button class="acc-head" data-acc-toggle="prof">
+                  <span>Професійна діяльність</span>
+                  <b>+</b>
+                </button>
+                <div class="acc-body">
+                  <p>Членкиня Чеської асоціації психотерапії (ČAP)</p>
+                  <p>Психолог у здравотництві Чехії</p>
+                  <p>Гештальт-терапевтка, МІГІС</p>
+                  <p>Магістриня психології</p>
+                  <p>Супервізорка в навчанні</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="certs" id="cert-list"></div>
@@ -135,7 +139,7 @@
       <section class="screen" id="faq">
         <article class="panel">
           <div class="heading"><span>✣ FAQ</span><h2>Питання, які часто виникають</h2></div>
-          <div class="faq-text" id="faq-text"></div>
+          <div class="faq-text accordion" id="faq-text"></div>
         </article>
       </section>
 
@@ -199,13 +203,17 @@
         <article class="panel">
           <div class="heading"><span>✣ Контакт</span><h2>Вам не потрібно справлятися з усім наодинці</h2></div>
           <div class="detail contact">
-            <img src="./public/kvitka/contact.jpg" alt="" />
             <p>Якщо відчуваєте, що настав час повернутися до себе, я буду поруч. Напишіть мені — і ми разом знайдемо наступний крок.</p>
             <a data-contact="Доброго дня, хочу записатися на консультацію.">Написати Наталії</a>
-            <a class="secondary" href="https://www.instagram.com/nastia_savanzha/" target="_blank" rel="noreferrer">Instagram</a>
-            <a class="secondary" href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer">Приєднатися до KVITKA space</a>
-            <a class="secondary" data-screen="rules">Правила співпраці</a>
-            <a class="secondary" data-screen="privacy">Конфіденційність</a>
+            <div class="contact-secondary">
+              <a href="https://www.instagram.com/nastia_savanzha/" target="_blank" rel="noreferrer">Instagram</a>
+              <a href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer">KVITKA space</a>
+            </div>
+            <div class="contact-legal">
+              <a data-screen="rules">Правила співпраці</a>
+              <span>·</span>
+              <a data-screen="privacy">Конфіденційність</a>
+            </div>
           </div>
         </article>
       </section>

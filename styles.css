@@ -965,3 +965,40 @@ h1, h2, h3 {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.contact-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.contact-secondary a {
+  display: block;
+  min-height: 44px;
+  padding: 12px;
+  border: 1px solid rgba(169, 138, 114, 0.35);
+  border-radius: var(--radius-pill);
+  color: var(--sage-deep);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.contact-legal {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.contact-legal a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-legal span {
+  margin: 0 6px;
+}

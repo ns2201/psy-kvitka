@@ -314,7 +314,17 @@ function renderReviews() {
 }
 
 function renderFaq() {
-  document.querySelector("#faq-text").innerHTML = faqText.map(([q, a]) => `<div class="faq-item"><p class="faq-q">${q}</p><p class="faq-a">${a}</p></div>`).join("");
+  document.querySelector("#faq-text").innerHTML = faqText.map(([q, a], index) => `
+    <div class="acc-item" data-acc="faq-${index}">
+      <button class="acc-head" data-acc-toggle="faq-${index}" data-acc-group="faq">
+        <span>${q}</span>
+        <b>+</b>
+      </button>
+      <div class="acc-body">
+        <p>${a}</p>
+      </div>
+    </div>
+  `).join("");
 }
 
 function renderEvents() {
@@ -350,7 +360,12 @@ document.addEventListener("click", (event) => {
   const accToggle = event.target.closest("[data-acc-toggle]");
   if (accToggle) {
     const item = accToggle.closest(".acc-item");
-    item.classList.toggle("open");
+    const group = accToggle.dataset.accGroup;
+    const isOpen = item.classList.contains("open");
+    if (group) {
+      item.closest(".accordion").querySelectorAll(`.acc-item`).forEach((el) => el.classList.remove("open"));
+    }
+    item.classList.toggle("open", !isOpen);
   }
 
   // Any link into Telegram (contactUrl or the community link) should go through
