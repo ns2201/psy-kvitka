@@ -168,9 +168,17 @@ function link(message) {
 
 function wireContactLinks() {
   document.querySelectorAll("[data-contact]").forEach((el) => {
-    el.href = link(el.dataset.contact);
+    const url = link(el.dataset.contact);
+    el.href = url;
     el.target = "_blank";
     el.rel = "noreferrer";
+    el.addEventListener("click", (event) => {
+      const tg = window.Telegram?.WebApp;
+      if (tg?.openTelegramLink) {
+        event.preventDefault();
+        tg.openTelegramLink(url);
+      }
+    });
   });
 }
 
@@ -288,6 +296,16 @@ document.addEventListener("click", (event) => {
   if (serviceButton) renderService(serviceButton.dataset.service);
 
   if (event.target.closest("#cert-toggle")) showCerts();
+
+  // Any link into Telegram (contactUrl or the community link) should go through
+  // Telegram's own deep-link handoff when running inside the mini app, so the
+  // pre-filled message text is preserved instead of being dropped.
+  const telegramLink = event.target.closest(`a[href^="${contactUrl}"], a[href^="${communityUrl}"]`);
+  const tg = window.Telegram?.WebApp;
+  if (telegramLink && tg?.openTelegramLink) {
+    event.preventDefault();
+    tg.openTelegramLink(telegramLink.href);
+  }
 });
 
 window.Telegram?.WebApp?.ready();
