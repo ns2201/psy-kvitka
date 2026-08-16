@@ -205,7 +205,6 @@ h1, h2, h3 {
 .hero h1 {
   margin: 0 0 14px;
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 32px;
   line-height: 1.15;
@@ -272,7 +271,6 @@ h1, h2, h3 {
 .bridge p {
   margin: 0 0 16px;
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.25;
@@ -289,7 +287,6 @@ h1, h2, h3 {
 .heading h2 {
   margin: 0 0 18px;
   font-size: 21px;
-  font-style: italic;
   line-height: 1.2;
 }
 
@@ -336,7 +333,6 @@ h1, h2, h3 {
 .result h3,
 .detail h2 {
   margin: 0 0 10px;
-  font-style: italic;
   font-size: 24px;
   line-height: 1.1;
 }
@@ -407,7 +403,6 @@ h1, h2, h3 {
 .services strong {
   margin-top: 6px;
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.08;
@@ -458,7 +453,6 @@ h1, h2, h3 {
 .info-block h3,
 .event-list h3 {
   margin: 0 0 8px;
-  font-style: italic;
   font-size: 18px;
 }
 
@@ -544,7 +538,6 @@ h1, h2, h3 {
   margin: 0 0 8px;
   color: var(--ink);
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 18px;
 }
@@ -679,7 +672,6 @@ h1, h2, h3 {
 
 .event-card h3 {
   margin: 0 0 8px;
-  font-style: italic;
   font-size: 19px;
 }
 
@@ -752,7 +744,6 @@ h1, h2, h3 {
 .hero-top strong {
   display: block;
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 20px;
   letter-spacing: 0.01em;
@@ -765,4 +756,102 @@ h1, h2, h3 {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+/* promise statement block — decorative circular accent like the reference site */
+.promise {
+  position: relative;
+  margin-top: 18px;
+  padding: 30px 24px 26px;
+  border-radius: var(--radius-md);
+  background: var(--sage-tint);
+  text-align: center;
+  overflow: hidden;
+}
+
+.promise::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(169, 138, 114, 0.18);
+}
+
+.promise::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(169, 138, 114, 0.12);
+}
+
+.promise-mark {
+  position: relative;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--white);
+  font-size: 18px;
+}
+
+.promise p {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--sage-deep);
+}
+
+/* more visual rhythm across the home page sections */
+#home .panel:nth-of-type(1) {
+  background: var(--white);
+}
+
+#home .panel:nth-of-type(2) {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+#home .panel:nth-of-type(2) .chips button:nth-child(3n) {
+  transform: rotate(-1deg);
+}
+
+#home .panel:nth-of-type(2) .chips button:nth-child(3n+1) {
+  transform: rotate(0.6deg);
+}
+
+.bridge {
+  position: relative;
+  overflow: hidden;
+}
+
+.bridge::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--sage-tint);
+  z-index: 0;
+}
+
+.bridge p,
+.bridge span {
+  position: relative;
+  z-index: 1;
 }
