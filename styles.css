@@ -1310,3 +1310,34 @@ h1, h2, h3 {
 .service-channel span {
   margin-bottom: 10px;
 }
+
+
+/* home text-only elements */
+.text-only-actions span,
+.text-only-note {
+  display: block;
+  min-height: 48px;
+  border-radius: var(--radius-pill);
+  padding: 13px 18px;
+  color: var(--sage-deep);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(169, 138, 114, 0.25);
+  font-weight: 600;
+  text-align: center;
+  pointer-events: none;
+}
+
+.text-only-actions span:first-child {
+  color: var(--white);
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.text-only-note {
+  display: inline-block;
+  width: auto;
+  min-height: 42px;
+  padding: 11px 22px;
+  color: var(--sage-deep);
+  background: rgba(255, 255, 255, 0.62);
+}
