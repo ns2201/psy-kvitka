@@ -265,18 +265,28 @@ function renderPicker(active = 0) {
 }
 
 function renderServices() {
+  const priceHtml = (item) => item.price.includes("KVITKA space")
+    ? `<a class="service-channel-link" href="${communityUrl}" target="_blank" rel="noreferrer">Анонси в KVITKA space ↗</a>`
+    : `<b>${item.price}</b>`;
+
   document.querySelector("#service-list").innerHTML = services.map((item) => `
     <button data-service="${item.id}">
       <img src="${item.image}" alt="" />
       <span>${item.meta}</span>
       <strong>${item.title}</strong>
-      <b>${item.price}</b>
+      ${priceHtml(item)}
     </button>
   `).join("");
 }
 
 function renderService(id) {
   const item = services.find((service) => service.id === id) || services[0];
+  const channelNotice = item.price.includes("KVITKA space") ? `
+    <div class="service-channel">
+      <span>Формат участі</span>
+      <a href="${communityUrl}" target="_blank" rel="noreferrer">Анонси в KVITKA space ↗</a>
+    </div>
+  ` : `<b>${item.price}</b>`;
   const accItems = [
     { key: "who", title: "Для кого", body: `${item.forWhom.map((t) => `<p>${t}</p>`).join("")}` },
     { key: "process", title: "Як проходить", body: `<p>${item.process}</p>` },
@@ -287,7 +297,7 @@ function renderService(id) {
   }
   document.querySelector("#service-detail-content").innerHTML = `
     <img src="${item.image}" alt="" />
-    <span>${item.meta} · ${item.duration.replace("перша зустріч", "<br />перша зустріч")}</span>
+    <span class="service-meta">${item.meta} · ${item.duration.replace("перша зустріч", "<br />перша зустріч")}</span>
     <h2>${item.title}</h2>
     <p>${item.intro}</p>
     <div class="accordion service-accordion">
@@ -316,7 +326,7 @@ function renderService(id) {
           </div>
         </div>` : ""}
     </div>
-    <b>${item.price}</b>
+    ${channelNotice}
     <a href="${link(item.message)}" target="_blank" rel="noreferrer">${item.ctaLabel}</a>
     ${reviewsCarouselHtml(item.id)}
   `;
