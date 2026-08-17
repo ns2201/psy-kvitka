@@ -1921,3 +1921,91 @@ button:active,
 #home .panel .heading h2 {
   margin-bottom: 20px !important;
 }
+
+/* final polish: homepage keeps one main photo, secondary blocks feel lighter */
+.about-text-card {
+  padding: 18px 16px 20px !important;
+  background: linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(250, 245, 240, 0.74)) !important;
+  border: 1px solid rgba(169, 138, 114, 0.14) !important;
+}
+
+.about-text-card > p {
+  margin-bottom: 16px !important;
+  color: var(--muted) !important;
+  font-size: 15.5px !important;
+  line-height: 1.58 !important;
+}
+
+.about-text-card .info-block {
+  margin-top: 16px !important;
+  border-radius: 18px !important;
+  background: rgba(255, 253, 250, 0.72) !important;
+}
+
+.change-list article {
+  padding: 16px 17px 18px !important;
+  border-radius: 22px !important;
+  box-shadow: 0 10px 26px rgba(64, 49, 38, 0.075) !important;
+  font-size: 16.5px !important;
+  line-height: 1.38 !important;
+}
+
+.change-list article::before {
+  width: 22px !important;
+  height: 3px !important;
+  margin-bottom: 11px !important;
+  opacity: 0.72 !important;
+}
+
+.services button::after {
+  background: linear-gradient(180deg, rgba(29, 23, 18, 0.08) 0%, rgba(29, 23, 18, 0.18) 42%, rgba(29, 23, 18, 0.66) 100%) !important;
+}
+
+.services button span {
+  color: rgba(255, 255, 255, 0.84) !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.services button strong,
+.services button b {
+  color: #fffdfa !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45) !important;
+}
+
+.services button b {
+  opacity: 0.92 !important;
+  font-weight: 650 !important;
+  text-decoration: none !important;
+}
+
+.contact-legal {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px !important;
+  text-align: initial !important;
+}
+
+.contact-legal span {
+  display: none !important;
+}
+
+.contact-legal a {
+  display: grid !important;
+  min-height: 44px !important;
+  place-items: center;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(169, 138, 114, 0.22);
+  border-radius: 999px !important;
+  background: rgba(255, 253, 250, 0.62) !important;
+  color: var(--sage-deep) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 20px rgba(64, 49, 38, 0.04);
+}
+
+.contact-legal a:active {
+  transform: scale(0.98);
+  background: var(--sage-tint) !important;
+}
