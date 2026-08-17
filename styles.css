@@ -1596,26 +1596,47 @@ button:active,
   }
 }
 
-/* ===== stacking cards effect for "Що зміниться" on scroll ===== */
+/* ===== visible stacking cards effect for "Що зміниться" ===== */
 .change-list {
   display: block;
+  position: relative;
+  padding-bottom: 42vh;
 }
 
 .change-list article {
   position: sticky;
-  margin-bottom: 12px;
-  padding: 18px;
-  background: var(--white);
-  box-shadow: var(--shadow-elevated);
+  top: 92px;
+  min-height: 118px;
+  margin: 0 0 72px;
+  padding: 20px 18px;
+  border: 1px solid rgba(169, 138, 114, 0.18);
+  border-radius: 28px;
+  background: rgba(255, 253, 250, 0.96);
+  box-shadow: 0 18px 44px rgba(64, 49, 38, 0.12);
+  transform-origin: center top;
+  backdrop-filter: blur(10px);
 }
 
-.change-list article:nth-child(1) { top: 66px; z-index: 1; }
-.change-list article:nth-child(2) { top: 78px; z-index: 2; }
-.change-list article:nth-child(3) { top: 90px; z-index: 3; }
-.change-list article:nth-child(4) { top: 102px; z-index: 4; }
-.change-list article:nth-child(5) { top: 114px; z-index: 5; }
-.change-list article:nth-child(6) { top: 126px; z-index: 6; }
-.change-list article:last-child { margin-bottom: 0; }
+.change-list article:nth-child(1) { z-index: 1; transform: scale(1); }
+.change-list article:nth-child(2) { z-index: 2; transform: scale(0.985); }
+.change-list article:nth-child(3) { z-index: 3; transform: scale(0.97); }
+.change-list article:nth-child(4) { z-index: 4; transform: scale(0.955); }
+.change-list article:nth-child(5) { z-index: 5; transform: scale(0.94); }
+.change-list article:nth-child(6) { z-index: 6; transform: scale(0.925); }
+
+.change-list article:last-child {
+  margin-bottom: 0;
+}
+
+.change-list article::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: rgba(169, 138, 114, 0.42);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .insurance-track {
@@ -1670,12 +1691,7 @@ button:active,
   transform-origin: center top;
 }
 
-.change-list article:nth-child(1) { transform: scale(1); }
-.change-list article:nth-child(2) { transform: scale(0.985); }
-.change-list article:nth-child(3) { transform: scale(0.97); }
-.change-list article:nth-child(4) { transform: scale(0.955); }
-.change-list article:nth-child(5) { transform: scale(0.94); }
-.change-list article:nth-child(6) { transform: scale(0.925); }
+/* scale is handled in the main stacking block above */
 
 @media (prefers-reduced-motion: reduce) {
   .screen-enter .panel,
