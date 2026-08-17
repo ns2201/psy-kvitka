@@ -439,4 +439,12 @@ renderPicker();
 renderServices();
 renderEvents();
 wireContactLinks();
+
+function initMotionPolish() {
+  document.querySelectorAll(".heading").forEach((el) => el.classList.add("reveal"));
+  document.querySelector("#home")?.classList.add("screen-enter");
+  observeReveal(document);
+}
+
+initMotionPolish();
 observeReveal();
