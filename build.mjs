@@ -9,6 +9,8 @@ await mkdir(".vercel/output/static/public", { recursive: true });
 await cp("index.html", ".vercel/output/static/index.html");
 await cp("styles.css", ".vercel/output/static/styles.css");
 await cp("app.js", ".vercel/output/static/app.js");
+await cp("landing.html", ".vercel/output/static/landing.html");
+await cp("landing.css", ".vercel/output/static/landing.css");
 await cp("public/kvitka", ".vercel/output/static/public/kvitka", { recursive: true });
 
 await writeFile(
@@ -17,6 +19,10 @@ await writeFile(
     {
       version: 3,
       routes: [
+        {
+          src: "/landing/?",
+          dest: "/landing.html"
+        },
         {
           handle: "filesystem"
         },
