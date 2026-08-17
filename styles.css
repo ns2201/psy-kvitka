@@ -1705,3 +1705,53 @@ button:active,
     animation: none !important;
   }
 }
+
+
+/* refined organic card overlap: no long sticky pauses */
+.change-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding-bottom: 10px !important;
+}
+
+.change-list article {
+  position: relative !important;
+  top: auto !important;
+  z-index: 1;
+  min-height: auto !important;
+  margin: 0 !important;
+  padding: 18px 18px 20px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 253, 250, 0.98) !important;
+  border: 1px solid rgba(169, 138, 114, 0.16) !important;
+  box-shadow: 0 14px 34px rgba(64, 49, 38, 0.08) !important;
+  transform: none !important;
+}
+
+.change-list article + article {
+  margin-top: -16px !important;
+}
+
+.change-list article:nth-child(1) { z-index: 1; }
+.change-list article:nth-child(2) { z-index: 2; }
+.change-list article:nth-child(3) { z-index: 3; }
+.change-list article:nth-child(4) { z-index: 4; }
+.change-list article:nth-child(5) { z-index: 5; }
+.change-list article:nth-child(6) { z-index: 6; }
+
+.change-list article::before {
+  width: 28px !important;
+  height: 3px !important;
+  margin-bottom: 14px !important;
+  background: rgba(169, 138, 114, 0.34) !important;
+}
+
+.change-list article {
+  font-size: 18px !important;
+  line-height: 1.42 !important;
+}
+
+#home .panel:has(.change-list) {
+  padding-bottom: 24px !important;
+}
