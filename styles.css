@@ -1,13 +1,13 @@
 :root {
   /* ---- palette: powder / beige / taupe ---- */
-  --cream: #f6f1ea;
-  --sage: #a98a72;
-  --sage-deep: #8a6c56;
-  --sage-tint: rgba(169, 138, 114, 0.14);
-  --glow: #c9a48a;
-  --glow-soft: rgba(201, 164, 138, 0.28);
-  --ink: #2b241f;
-  --muted: #8a7d72;
+  --cream: #faf5f0;
+  --sage: #cda79b;
+  --sage-deep: #a97c6f;
+  --sage-tint: rgba(205, 167, 155, 0.16);
+  --glow: #e6c7ba;
+  --glow-soft: rgba(230, 199, 186, 0.32);
+  --ink: #382e2a;
+  --muted: #948078;
   --line: rgba(43, 36, 31, 0.1);
   --white: #fffdfa;
 
@@ -264,19 +264,19 @@ h1, h2, h3 {
 .actions a {
   color: var(--sage-deep);
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(95, 122, 90, 0.35);
+  border: 1px solid rgba(169, 124, 111, 0.35);
 }
 
 .actions button.secondary-action {
   color: var(--sage-deep);
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(95, 122, 90, 0.35);
+  border: 1px solid rgba(169, 124, 111, 0.35);
 }
 
 .wide.secondary,
 .result button {
   color: var(--sage-deep);
-  border: 1px solid rgba(95, 122, 90, 0.35);
+  border: 1px solid rgba(169, 124, 111, 0.35);
   background: rgba(255, 255, 255, 0.7);
 }
 
@@ -525,7 +525,7 @@ h1, h2, h3 {
 
 .detail a.secondary {
   color: var(--sage-deep);
-  border: 1px solid rgba(95, 122, 90, 0.35);
+  border: 1px solid rgba(169, 124, 111, 0.35);
   background: transparent;
 }
 
@@ -797,7 +797,7 @@ h1, h2, h3 {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: rgba(169, 138, 114, 0.18);
+  background: rgba(205, 167, 155, 0.18);
 }
 
 .promise::after {
@@ -808,7 +808,7 @@ h1, h2, h3 {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: rgba(169, 138, 114, 0.12);
+  background: rgba(205, 167, 155, 0.12);
 }
 
 .promise-mark {
@@ -1000,7 +1000,7 @@ h1, h2, h3 {
   display: block;
   min-height: 44px;
   padding: 12px;
-  border: 1px solid rgba(169, 138, 114, 0.35);
+  border: 1px solid rgba(205, 167, 155, 0.35);
   border-radius: var(--radius-pill);
   color: var(--sage-deep);
   background: transparent;
@@ -1163,7 +1163,7 @@ h1, h2, h3 {
 .detail > .service-meta {
   margin-top: 0;
   margin-bottom: 20px;
-  color: rgba(74, 63, 55, 0.58);
+  color: rgba(56, 46, 42, 0.58);
   font-size: 13.5px;
   font-weight: 500;
   line-height: 1.5;
@@ -1179,7 +1179,7 @@ h1, h2, h3 {
 
 .detail > p {
   margin: 0 0 24px;
-  color: rgba(74, 63, 55, 0.68);
+  color: rgba(56, 46, 42, 0.68);
   font-size: 16px;
   line-height: 1.62;
 }
@@ -1191,7 +1191,7 @@ h1, h2, h3 {
 .service-channel {
   margin-top: 24px;
   padding: 14px 16px;
-  border: 1px solid rgba(169, 138, 114, 0.18);
+  border: 1px solid rgba(205, 167, 155, 0.18);
   border-radius: var(--radius-md);
   background: rgba(255, 253, 250, 0.76);
 }
@@ -1199,7 +1199,7 @@ h1, h2, h3 {
 .service-channel span {
   display: block;
   margin-bottom: 6px;
-  color: rgba(74, 63, 55, 0.5);
+  color: rgba(56, 46, 42, 0.5);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1232,7 +1232,7 @@ h1, h2, h3 {
 
 .contact-docs p {
   margin: 0 0 2px;
-  color: rgba(74, 63, 55, 0.54);
+  color: rgba(56, 46, 42, 0.54);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1245,7 +1245,7 @@ h1, h2, h3 {
   gap: 4px 12px;
   align-items: center;
   width: 100%;
-  border: 1px solid rgba(169, 138, 114, 0.22);
+  border: 1px solid rgba(205, 167, 155, 0.22);
   border-radius: var(--radius-md);
   padding: 15px 16px;
   background: rgba(255, 253, 250, 0.74);
@@ -1259,7 +1259,7 @@ h1, h2, h3 {
 }
 
 .contact-docs button small {
-  color: rgba(74, 63, 55, 0.58);
+  color: rgba(56, 46, 42, 0.58);
   font-size: 12.5px;
   line-height: 1.4;
 }
@@ -1327,7 +1327,7 @@ h1, h2, h3 {
   padding: 13px 18px;
   color: var(--sage-deep);
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(169, 138, 114, 0.25);
+  border: 1px solid rgba(205, 167, 155, 0.25);
   font-weight: 600;
   text-align: center;
   pointer-events: none;
