@@ -229,11 +229,38 @@ function wireContactLinks() {
 }
 
 function showScreen(id) {
-  screens.forEach((screen) => screen.classList.toggle("active", screen.id === id));
+  screens.forEach((screen) => {
+    const isTarget = screen.id === id;
+    screen.classList.toggle("active", isTarget);
+    if (isTarget) {
+      screen.classList.remove("screen-enter");
+      void screen.offsetWidth;
+      screen.classList.add("screen-enter");
+    }
+  });
   navButtons.forEach((button) => button.classList.toggle("active", button.dataset.screen === id));
   window.scrollTo({ top: 0, behavior: "smooth" });
   const back = window.Telegram?.WebApp?.BackButton;
   if (back) id === "home" ? back.hide() : back.show();
+  const activeScreen = screens.find((screen) => screen.id === id);
+  if (activeScreen) observeReveal(activeScreen);
+}
+
+function observeReveal(root = document) {
+  const targets = root.querySelectorAll(".reveal:not(.revealed)");
+  if (!("IntersectionObserver" in window) || !targets.length) {
+    targets.forEach((el) => el.classList.add("revealed"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  targets.forEach((el) => io.observe(el));
 }
 
 function renderBasics() {
@@ -412,3 +439,4 @@ renderPicker();
 renderServices();
 renderEvents();
 wireContactLinks();
+observeReveal();

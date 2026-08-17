@@ -1400,3 +1400,163 @@ h1, h2, h3 {
 .contact-mini .contact-legal {
   margin-top: 16px;
 }
+
+/* ===== micro-interactions & motion polish ===== */
+
+/* screen switch: soft fade + rise instead of an abrupt cut */
+@keyframes screenEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screen.screen-enter {
+  animation: screenEnter 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* tactile press feedback on every interactive control */
+button,
+a {
+  transition: transform 160ms var(--ease), box-shadow var(--duration) var(--ease), background var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+button:active,
+.icon-row a:active {
+  transform: scale(0.96);
+}
+
+/* hero photo: slow, subtle Ken Burns breathing zoom */
+@keyframes heroBreathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.hero img {
+  animation: heroBreathe 14s ease-in-out infinite alternate;
+}
+
+/* heading underline that "draws itself" once scrolled into view */
+.heading.reveal h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.heading.reveal h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--sage);
+  transition: width 700ms cubic-bezier(0.16, 1, 0.3, 1) 120ms;
+}
+
+.heading.reveal.revealed h2::after {
+  width: 40px;
+}
+
+.heading.reveal span {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.heading.reveal.revealed span {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* staggered card entrance inside a freshly-shown screen */
+.screen-enter .services button,
+.screen-enter .accordion .acc-item,
+.screen-enter .event-list article,
+.screen-enter .change-list article,
+.screen-enter .chips button {
+  animation: cardRise 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.screen-enter .services button:nth-child(1),
+.screen-enter .accordion .acc-item:nth-child(1) { animation-delay: 40ms; }
+.screen-enter .services button:nth-child(2),
+.screen-enter .accordion .acc-item:nth-child(2) { animation-delay: 100ms; }
+.screen-enter .services button:nth-child(3),
+.screen-enter .accordion .acc-item:nth-child(3) { animation-delay: 160ms; }
+.screen-enter .services button:nth-child(4),
+.screen-enter .accordion .acc-item:nth-child(4) { animation-delay: 220ms; }
+.screen-enter .services button:nth-child(5),
+.screen-enter .accordion .acc-item:nth-child(5) { animation-delay: 280ms; }
+
+@keyframes cardRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* accordion chevron: livelier easing + gentle background pulse on open */
+.acc-head b {
+  transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1), background 300ms var(--ease);
+}
+
+.acc-item.open .acc-head b {
+  background: var(--sage);
+  color: var(--white);
+}
+
+/* contact icons: small bounce on press, not just scale */
+.icon-row a span {
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), background 220ms var(--ease);
+}
+
+.icon-row a:active span {
+  transform: scale(0.88);
+  background: var(--sage);
+  color: var(--white);
+}
+
+/* primary hero CTA: gentle pulse to draw the eye without being noisy */
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(205, 167, 155, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(205, 167, 155, 0);
+  }
+}
+
+.actions button:not(.secondary-action) {
+  animation: ctaPulse 3.2s ease-in-out infinite;
+}
+
+.actions button:not(.secondary-action):hover,
+.actions button:not(.secondary-action):active {
+  animation: none;
+}
+
+/* respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero img,
+  .actions button:not(.secondary-action),
+  .screen.screen-enter,
+  .screen-enter .services button,
+  .screen-enter .accordion .acc-item,
+  .screen-enter .event-list article,
+  .screen-enter .change-list article,
+  .screen-enter .chips button {
+    animation: none !important;
+  }
+}
