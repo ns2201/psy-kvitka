@@ -1901,3 +1901,23 @@ button:active,
   overflow: visible !important;
   padding-bottom: 28px !important;
 }
+
+
+/* cleaner section headings: label and title should breathe, not collide */
+.heading {
+  display: grid !important;
+  gap: 8px !important;
+}
+
+.heading span {
+  margin-bottom: 0 !important;
+}
+
+.heading.reveal h2 {
+  display: block !important;
+  width: fit-content;
+}
+
+#home .panel .heading h2 {
+  margin-bottom: 20px !important;
+}
