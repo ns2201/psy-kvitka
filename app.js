@@ -440,6 +440,55 @@ renderServices();
 renderEvents();
 wireContactLinks();
 
+
+function setupChangeCardScroll() {
+  const list = document.querySelector("#change-list");
+  if (!list || list.dataset.motionReady === "1") return;
+
+  const cards = [...list.querySelectorAll("article")];
+  if (!cards.length) return;
+
+  list.dataset.motionReady = "1";
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  let ticking = false;
+
+  const update = () => {
+    const vh = window.innerHeight || 700;
+
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const start = vh * 0.9;
+      const end = vh * 0.42;
+      const progress = clamp((start - rect.top) / (start - end), 0, 1);
+
+      const y = 18 - progress * 24;
+      const scale = 0.986 + progress * 0.014 - index * 0.0015;
+      const opacity = 0.86 + progress * 0.14;
+      const shadowY = 10 + progress * 14;
+      const shadowBlur = 24 + progress * 18;
+
+      card.style.setProperty("--stack-y", y.toFixed(1) + "px");
+      card.style.setProperty("--stack-scale", scale.toFixed(3));
+      card.style.setProperty("--stack-opacity", opacity.toFixed(3));
+      card.style.setProperty("--stack-shadow", `0 ${shadowY.toFixed(0)}px ${shadowBlur.toFixed(0)}px rgba(64, 49, 38, ${(0.06 + progress * 0.05).toFixed(3)})`);
+    });
+
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  update();
+}
+
 function initMotionPolish() {
   document.querySelectorAll(".heading").forEach((el) => el.classList.add("reveal"));
   document.querySelector("#home")?.classList.add("screen-enter");
