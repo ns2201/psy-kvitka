@@ -1560,3 +1560,91 @@ button:active,
     animation: none !important;
   }
 }
+
+/* ===== running marquee ticker for insurance names ===== */
+.insurance-marquee {
+  overflow: hidden;
+  margin: 16px -16px;
+  padding: 14px 0;
+  background: var(--sage-tint);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.insurance-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  animation: marqueeScroll 16s linear infinite;
+}
+
+.insurance-track span {
+  flex: 0 0 auto;
+  color: var(--sage-deep);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== stacking cards effect for "Що зміниться" on scroll ===== */
+.change-list {
+  display: block;
+}
+
+.change-list article {
+  position: sticky;
+  margin-bottom: 12px;
+  padding: 18px;
+  background: var(--white);
+  box-shadow: var(--shadow-elevated);
+}
+
+.change-list article:nth-child(1) { top: 66px; z-index: 1; }
+.change-list article:nth-child(2) { top: 78px; z-index: 2; }
+.change-list article:nth-child(3) { top: 90px; z-index: 3; }
+.change-list article:nth-child(4) { top: 102px; z-index: 4; }
+.change-list article:nth-child(5) { top: 114px; z-index: 5; }
+.change-list article:nth-child(6) { top: 126px; z-index: 6; }
+.change-list article:last-child { margin-bottom: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .insurance-track {
+    animation: none;
+  }
+}
+
+/* small delightful sparkle accent near the "Впізнати себе" heading */
+#home .panel:nth-of-type(2) .heading span::after {
+  content: "✦";
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--glow);
+  animation: sparkleTwinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(15deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home .panel:nth-of-type(2) .heading span::after {
+    animation: none;
+  }
+}
