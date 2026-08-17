@@ -435,6 +435,7 @@ window.Telegram?.WebApp?.expand();
 window.Telegram?.WebApp?.BackButton?.onClick(() => showScreen("home"));
 
 renderBasics();
+setupChangeCardScroll();
 renderPicker();
 renderServices();
 renderEvents();
@@ -493,7 +494,54 @@ function initMotionPolish() {
   document.querySelectorAll(".heading").forEach((el) => el.classList.add("reveal"));
   document.querySelector("#home")?.classList.add("screen-enter");
   observeReveal(document);
+  setupChangeCardScroll();
 }
 
 initMotionPolish();
 observeReveal();
+
+
+/* override: visible scroll-linked movement for change cards */
+function setupChangeCardScroll() {
+  const list = document.querySelector("#change-list");
+  if (!list) return;
+
+  const cards = [...list.querySelectorAll("article")];
+  if (!cards.length) return;
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  let ticking = false;
+
+  const update = () => {
+    const vh = window.innerHeight || 700;
+
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const progress = clamp((vh * 0.86 - rect.top) / (vh * 0.42), 0, 1);
+
+      const y = 30 - progress * 42;
+      const scale = 0.965 + progress * 0.035 - index * 0.002;
+      const opacity = 0.72 + progress * 0.28;
+      const lift = 8 + progress * 18;
+
+      card.style.setProperty("--stack-y", y.toFixed(1) + "px");
+      card.style.setProperty("--stack-scale", scale.toFixed(3));
+      card.style.setProperty("--stack-opacity", opacity.toFixed(3));
+      card.style.setProperty("--stack-shadow", `0 ${lift.toFixed(0)}px ${(24 + progress * 24).toFixed(0)}px rgba(64, 49, 38, ${(0.05 + progress * 0.08).toFixed(3)})`);
+    });
+
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  document.addEventListener("scroll", requestUpdate, { passive: true, capture: true });
+  window.addEventListener("resize", requestUpdate);
+  update();
+}

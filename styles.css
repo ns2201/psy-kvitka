@@ -1805,3 +1805,20 @@ button:active,
 #home .panel:has(.change-list) {
   padding-bottom: 22px !important;
 }
+
+
+/* force visible scroll movement; prevent entrance animation from overriding transforms */
+.screen-enter .change-list article {
+  animation: none !important;
+}
+
+.change-list article {
+  transition: transform 90ms linear, opacity 90ms linear, box-shadow 90ms linear !important;
+  transform: translate3d(0, var(--stack-y, 30px), 0) scale(var(--stack-scale, 0.965)) !important;
+  opacity: var(--stack-opacity, 0.72) !important;
+  box-shadow: var(--stack-shadow, 0 8px 24px rgba(64, 49, 38, 0.05)) !important;
+}
+
+.change-list article + article {
+  margin-top: -22px !important;
+}
