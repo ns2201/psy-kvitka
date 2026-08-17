@@ -352,20 +352,6 @@ function reviewsCarouselHtml(serviceId) {
   `;
 }
 
-function renderFaq() {
-  document.querySelector("#faq-text").innerHTML = faqText.map(([q, a], index) => `
-    <div class="acc-item" data-acc="faq-${index}">
-      <button class="acc-head" data-acc-toggle="faq-${index}" data-acc-group="faq">
-        <span>${q}</span>
-        <b>+</b>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner"><p>${a}</p></div>
-      </div>
-    </div>
-  `).join("");
-}
-
 function renderEvents() {
   document.querySelector("#event-list").innerHTML = events.map((e) => `
     <article class="event-card">
@@ -424,6 +410,5 @@ window.Telegram?.WebApp?.BackButton?.onClick(() => showScreen("home"));
 renderBasics();
 renderPicker();
 renderServices();
-renderFaq();
 renderEvents();
 wireContactLinks();

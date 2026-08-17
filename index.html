@@ -33,7 +33,7 @@
             <p>Зовні — усе під контролем. Всередині — втома, яка нікуди не зникає, і відчуття, що ти давно не була собою</p>
             <div class="actions">
               <button type="button" data-screen="picker">Підібрати формат</button>
-              <button type="button" data-screen="formats">Усі формати</button>
+              <button type="button" class="secondary-action" data-screen="formats">Усі формати</button>
             </div>
           </div>
         </article>
@@ -50,6 +50,49 @@
         <article class="panel">
           <div class="heading"><span>✣ Що зміниться</span><h2>Після терапії не потрібно ставати іншою людиною. Часто це про повернення до себе.</h2></div>
           <div class="change-list" id="change-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="heading"><span>✣ Про Наталію</span><h2>Хто я</h2></div>
+          <div class="detail">
+            <img src="./public/kvitka/about.jpg" alt="Наталія Квітка" />
+            <p>Я гештальт-терапевтка. Поруч зі мною жінки знаходять внутрішню опору, повертають довіру до себе та відчуття власної цінності. Допомагаю пройти через кризи, складні стосунки й життєві зміни, щоб знову відчути себе живою, цілісною та впевненою.</p>
+            <div class="info-block">
+              <h3>Кваліфікація</h3>
+              <div class="cred-item">
+                <strong>Магістриня психології</strong>
+                <span>Відкритий міжнародний університет розвитку людини «Україна»</span>
+              </div>
+              <div class="cred-item">
+                <strong>Гештальт-терапевтка</strong>
+                <span>МІГІС — Міжрегіональний інститут гештальт-терапії і мистецтва</span>
+              </div>
+              <div class="cred-item">
+                <strong>Групова та сімейно-системна терапія</strong>
+              </div>
+            </div>
+          </div>
+          <div class="certs" id="cert-list"></div>
+        </article>
+
+        <article class="panel contact-mini">
+          <div class="heading"><span>✣ Контакт</span></div>
+          <div class="icon-row">
+            <a data-contact="Доброго дня, хочу записатися на консультацію." aria-label="Написати в Telegram">
+              <span>✉</span>Написати
+            </a>
+            <a href="https://www.instagram.com/nastia_savanzha/" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <span>◎</span>Instagram
+            </a>
+            <a href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer" aria-label="KVITKA space">
+              <span>✾</span>KVITKA
+            </a>
+          </div>
+          <div class="contact-legal">
+            <a data-screen="rules">Правила співпраці</a>
+            <span>·</span>
+            <a data-screen="privacy">Конфіденційність</a>
+          </div>
         </article>
       </section>
 
@@ -95,40 +138,9 @@
         </article>
       </section>
 
-      <section class="screen" id="about">
-        <article class="panel">
-          <div class="heading"><span>✣ Про Наталію</span><h2>Хто я</h2></div>
-          <div class="detail">
-            <img src="./public/kvitka/about.jpg" alt="Наталія Квітка" />
-            <p>Я гештальт-терапевтка. Поруч зі мною жінки знаходять внутрішню опору, повертають довіру до себе та відчуття власної цінності. Допомагаю пройти через кризи, складні стосунки й життєві зміни, щоб знову відчути себе живою, цілісною та впевненою.</p>
-            <div class="info-block">
-              <h3>Кваліфікація</h3>
-              <div class="cred-item">
-                <strong>Магістриня психології</strong>
-                <span>Відкритий міжнародний університет розвитку людини «Україна»</span>
-              </div>
-              <div class="cred-item">
-                <strong>Гештальт-терапевтка</strong>
-                <span>МІГІС — Міжрегіональний інститут гештальт-терапії і мистецтва</span>
-              </div>
-              <div class="cred-item">
-                <strong>Групова та сімейно-системна терапія</strong>
-              </div>
-            </div>
-          </div>
-          <div class="certs" id="cert-list"></div>
-        </article>
-      </section>
-
-      <section class="screen" id="faq">
-        <article class="panel">
-          <div class="heading"><span>✣ FAQ</span><h2>Питання, які часто виникають</h2></div>
-          <div class="faq-text accordion" id="faq-text"></div>
-        </article>
-      </section>
-
       <section class="screen" id="rules">
         <article class="panel">
+          <button class="back" data-screen="home">← Головна</button>
           <div class="heading"><span>✣ Правила співпраці</span><h2>Щоб у нас не було непорозумінь</h2></div>
           <div class="detail">
             <p>Для мене важливо, щоб терапія була безпечним, чесним і передбачуваним простором для нас обох. Тому пропоную ознайомитися з основними домовленостями перед початком роботи.</p>
@@ -174,6 +186,7 @@
 
       <section class="screen" id="privacy">
         <article class="panel">
+          <button class="back" data-screen="home">← Головна</button>
           <div class="heading"><span>✣ Конфіденційність</span><h2>Які дані ми зберігаємо</h2></div>
           <div class="detail">
             <p>Коли ви пишете в чат-бот, ми зберігаємо ваше ім'я, юзернейм і Telegram ID — щоб зв'язатись із вами й вести облік записів.</p>
@@ -183,39 +196,9 @@
         </article>
       </section>
 
-      <section class="screen" id="contact">
-        <article class="panel">
-          <div class="heading"><span>✣ Контакт</span><h2>Вам не потрібно справлятися з усім наодинці</h2></div>
-          <div class="detail contact">
-            <p>Якщо відчуваєте, що настав час повернутися до себе, я буду поруч. Напишіть мені — і ми разом знайдемо наступний крок.</p>
-            <a data-contact="Доброго дня, хочу записатися на консультацію.">Написати мені</a>
-            <div class="contact-secondary">
-              <a href="https://www.instagram.com/nastia_savanzha/" target="_blank" rel="noreferrer">Instagram</a>
-              <a href="https://t.me/+Ab_sesYNrnM2NmFi" target="_blank" rel="noreferrer">KVITKA space</a>
-            </div>
-            <div class="contact-docs">
-              <p>Перед початком роботи</p>
-              <button data-screen="rules">
-                <span>Правила співпраці</span>
-                <small>Домовленості про сесії, оплату, перенесення й межі контакту</small>
-                <b>↗</b>
-              </button>
-              <button data-screen="privacy">
-                <span>Конфіденційність</span>
-                <small>Як зберігаються дані та що залишається приватним</small>
-                <b>↗</b>
-              </button>
-            </div>
-          </div>
-        </article>
-      </section>
-
       <nav class="nav">
         <button class="active" data-screen="home"><span>✾</span>Головна</button>
         <button data-screen="formats"><span>◇</span>Формати</button>
-        <button data-screen="about"><span>●</span>Наталія</button>
-        <button data-screen="faq"><span>?</span>FAQ</button>
-        <button data-screen="contact"><span>↗</span>Контакт</button>
       </nav>
     </main>
     <script src="./app.js"></script>

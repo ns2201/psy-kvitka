@@ -267,6 +267,12 @@ h1, h2, h3 {
   border: 1px solid rgba(95, 122, 90, 0.35);
 }
 
+.actions button.secondary-action {
+  color: var(--sage-deep);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(95, 122, 90, 0.35);
+}
+
 .wide.secondary,
 .result button {
   color: var(--sage-deep);
@@ -600,7 +606,7 @@ h1, h2, h3 {
   bottom: 10px;
   z-index: 20;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 4px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
@@ -1356,4 +1362,41 @@ h1, h2, h3 {
 .services b {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none !important;
+}
+
+/* condensed contact section on Home — icons only, minimal caption */
+.contact-mini {
+  text-align: center;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 4px;
+}
+
+.icon-row a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--sage-deep);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.icon-row a span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sage-tint);
+  color: var(--sage-deep);
+  font-size: 18px;
+}
+
+.contact-mini .contact-legal {
+  margin-top: 16px;
 }
