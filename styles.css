@@ -1822,3 +1822,82 @@ button:active,
 .change-list article + article {
   margin-top: -22px !important;
 }
+
+
+/* FINAL: true CSS stacking cards for "Що зміниться" */
+.screen-enter .change-list article {
+  animation: none !important;
+}
+
+.change-list {
+  display: block !important;
+  position: relative !important;
+  overflow: visible !important;
+  margin-top: 16px !important;
+  padding: 0 0 18px !important;
+}
+
+.change-list article {
+  position: sticky !important;
+  top: 92px !important;
+  min-height: auto !important;
+  margin: 0 0 18px !important;
+  padding: 18px 18px 20px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 253, 250, 0.98) !important;
+  border: 1px solid rgba(169, 138, 114, 0.18) !important;
+  box-shadow: 0 14px 34px rgba(64, 49, 38, 0.09) !important;
+  opacity: 1 !important;
+  transform-origin: center top !important;
+  backdrop-filter: blur(10px);
+  font-size: 18px !important;
+  line-height: 1.42 !important;
+}
+
+.change-list article:nth-child(1) {
+  z-index: 1 !important;
+  top: 92px !important;
+  transform: scale(0.985) !important;
+}
+
+.change-list article:nth-child(2) {
+  z-index: 2 !important;
+  top: 102px !important;
+  transform: scale(0.99) !important;
+}
+
+.change-list article:nth-child(3) {
+  z-index: 3 !important;
+  top: 112px !important;
+  transform: scale(0.995) !important;
+}
+
+.change-list article:nth-child(4) {
+  z-index: 4 !important;
+  top: 122px !important;
+  transform: scale(1) !important;
+}
+
+.change-list article:nth-child(5) {
+  z-index: 5 !important;
+  top: 132px !important;
+  transform: scale(1) !important;
+}
+
+.change-list article:nth-child(6) {
+  z-index: 6 !important;
+  top: 142px !important;
+  transform: scale(1) !important;
+}
+
+.change-list article::before {
+  width: 26px !important;
+  height: 3px !important;
+  margin-bottom: 13px !important;
+  background: rgba(169, 138, 114, 0.34) !important;
+}
+
+#home .panel:has(.change-list) {
+  overflow: visible !important;
+  padding-bottom: 28px !important;
+}

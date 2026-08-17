@@ -435,7 +435,7 @@ window.Telegram?.WebApp?.expand();
 window.Telegram?.WebApp?.BackButton?.onClick(() => showScreen("home"));
 
 renderBasics();
-setupChangeCardScroll();
+/* setupChangeCardScroll disabled: CSS sticky handles cards */
 renderPicker();
 renderServices();
 renderEvents();
@@ -494,7 +494,7 @@ function initMotionPolish() {
   document.querySelectorAll(".heading").forEach((el) => el.classList.add("reveal"));
   document.querySelector("#home")?.classList.add("screen-enter");
   observeReveal(document);
-  setupChangeCardScroll();
+  /* setupChangeCardScroll disabled: CSS sticky handles cards */
 }
 
 initMotionPolish();
