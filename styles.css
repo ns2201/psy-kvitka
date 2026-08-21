@@ -1435,10 +1435,10 @@ button:active,
 /* hero photo: slow, subtle Ken Burns breathing zoom */
 @keyframes heroBreathe {
   from {
-    transform: scale(1.32);
+    transform: scale(1);
   }
   to {
-    transform: scale(1.38);
+    transform: scale(1.06);
   }
 }
 
