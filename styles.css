@@ -170,6 +170,7 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 22%;
 }
 
 .hero::after {
@@ -178,9 +179,9 @@ h1, h2, h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 55%;
+  top: 38%;
   z-index: 1;
-  background: linear-gradient(0deg, rgba(246, 241, 234, 0.98) 0%, rgba(246, 241, 234, 0.94) 40%, rgba(246, 241, 234, 0.5) 75%, rgba(246, 241, 234, 0) 100%);
+  background: linear-gradient(0deg, rgba(246, 241, 234, 1) 0%, rgba(246, 241, 234, 0.99) 35%, rgba(246, 241, 234, 0.92) 55%, rgba(246, 241, 234, 0.6) 75%, rgba(246, 241, 234, 0) 100%);
 }
 
 .hero > div {
