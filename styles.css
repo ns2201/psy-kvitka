@@ -210,8 +210,8 @@ h1, h2, h3 {
   margin: 0 0 14px;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 26px;
-  line-height: 1.18;
+  font-size: 21px;
+  line-height: 1.3;
   color: var(--ink);
 }
 
@@ -658,7 +658,7 @@ h1, h2, h3 {
 
 @media (max-width: 380px) {
   .hero h1 {
-    font-size: 26px;
+    font-size: 19px;
   }
 
   .heading h2 {
