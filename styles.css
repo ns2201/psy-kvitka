@@ -185,6 +185,17 @@ h1, h2, h3 {
   background: linear-gradient(0deg, rgba(246, 241, 234, 1) 0%, rgba(246, 241, 234, 0.99) 35%, rgba(246, 241, 234, 0.92) 55%, rgba(246, 241, 234, 0.6) 75%, rgba(246, 241, 234, 0) 100%);
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 130px;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(20, 24, 18, 0.55) 0%, rgba(20, 24, 18, 0.3) 45%, rgba(20, 24, 18, 0) 100%);
+}
+
 .hero > div {
   position: absolute;
   left: 20px;
@@ -769,15 +780,17 @@ h1, h2, h3 {
   font-weight: 600;
   font-size: 20px;
   letter-spacing: 0.01em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 
 .hero-top span {
   display: block;
   margin-top: 2px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
 }
 
 /* promise statement block — decorative circular accent like the reference site */
